@@ -1,0 +1,167 @@
+.officers-page {
+  padding: 32px;
+  background: #f6f9f8;
+  min-height: 100vh;
+}
+
+.officers-page h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #173f35;
+}
+
+.officers-subtitle {
+  margin-top: 8px;
+  color: #6b7d78;
+  font-size: 15px;
+}
+
+.officers-toolbar {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+  align-items: center;
+}
+
+.officers-toolbar input,
+.officers-toolbar select {
+  height: 46px;
+  border: 1px solid #d9e2df;
+  border-radius: 8px;
+  background: white;
+  padding: 0 14px;
+  font-size: 14px;
+  outline: none;
+}
+
+.officers-toolbar input {
+  flex: 1;
+  min-width: 280px;
+}
+
+.officers-toolbar select {
+  width: 190px;
+}
+
+.officers-toolbar input:focus,
+.officers-toolbar select:focus {
+  border-color: #15966f;
+}
+
+.officers-toolbar button {
+  height: 46px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 8px;
+  background: #15966f;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.officers-toolbar button:hover {
+  background: #117e5d;
+}
+.officers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.officer-card {
+  background: white;
+  border: 1px solid #e1e8e5;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.officer-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #edf1ef;
+}
+
+.officer-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #dff3eb;
+  color: #15966f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.officer-card-header h3 {
+  margin: 0;
+  color: #173f35;
+  font-size: 17px;
+}
+
+.officer-card-header p {
+  margin: 4px 0 0;
+  color: #71807b;
+  font-size: 13px;
+}
+
+.officer-details {
+  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.officer-details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.officer-details span {
+  color: #7b8985;
+  font-size: 13px;
+}
+
+.officer-details strong {
+  color: #263a34;
+  font-size: 13px;
+  text-align: right;
+}
+
+.officer-card-footer {
+  border-top: 1px solid #edf1ef;
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.officer-status {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.officer-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.officer-actions button {
+  border: none;
+  background: transparent;
+  color: #15966f;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}

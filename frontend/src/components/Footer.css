@@ -1,0 +1,80 @@
+.footer {
+  background: #123b4d;
+  color: white;
+  padding: 35px 0 18px;
+  margin-top: 30px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  display: grid;
+   grid-template-columns: 1.5fr 1fr 1fr 1.2fr; 
+  gap: 45px;
+  align-items: start;
+}
+
+.footer-about h2 {
+  font-size: 29px;
+  margin: 0 0 15px;
+}
+
+.footer-about h2 span {
+  color: #4caf50;
+}
+
+.footer-about p {
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 280px;
+  color: #d5e0e5;
+  margin-top: 12px;
+}
+
+.copyright {
+  margin-top: 30px;
+  font-size: 12px !important;
+  color: #b8c8cf !important;
+  display: flex;
+  align-items: center;
+  gap:5px;
+}
+.copyright svg{
+    width:13px;
+    height: 13px;
+}
+
+.footer-column h3 {
+  font-size: 16px;
+  margin: 0 0 18px;
+  color: white;
+}
+
+.footer-column p {
+  font-size: 14px;
+  margin: 10px 0;
+  color: #d5e0e5;
+  display: flex;
+  align-items: center;
+  gap:10px;
+  cursor: pointer;
+}
+.footer-column p svg{
+    width:17px;
+    height: 17px;
+    color:#4caf50;
+    flex-shrink: 0;
+}
+.footer-column p:hover {
+  color: #4caf50;
+}
+.footer-logo{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.footer-logo h2{
+    margin: 0;
+}

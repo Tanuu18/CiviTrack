@@ -1,0 +1,117 @@
+ .hero{
+    display:flex;
+    align-items: center;
+    width:100%;
+   
+ }
+
+ .hero-text{
+    width:50%;
+    padding:40px;
+    box-sizing: border-box;
+ }
+ .hero-image{
+    width:50%;
+     height: 500px; 
+   
+ }
+ 
+ .hero-image img{
+     width:100%;
+    height: auto;
+    display: block; 
+    
+ }
+ .track2{
+    color: rgb(61, 148, 61);
+ }
+ .hero-text h1{
+      font-size: 72px;
+      line-height: 1.05;
+      font-weight: 700;
+      margin: 0 0 25px 20px;
+      color:#123b6d;
+      margin-left: 70px;
+      animation:fadeInUp 0.8s ease forwards;
+      opacity:0;
+ }
+ @keyframes fadeInUp {
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+ }
+ .hero-text p{
+      font-size: 20px;
+      line-height: 1.6;
+      font-weight: 550;
+      margin:0 0 30px 20px;
+      margin-bottom: 30px;
+      color:#4b5b6b;
+      max-width: 520px;
+      margin-left: 70px;
+ }
+ 
+ .hero-buttons{
+    display: flex;
+    gap:18px;
+    margin-top: 25px;
+    margin-left: 70px;
+ }
+ .hero-buttons button{
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:8px;
+    transition:all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.8);
+ }
+ .hero-buttons button svg{
+    transition: transform 0.25s ease;
+ }
+
+ .hero-buttons button:hover{
+    transform:translateY(-2px);
+    box-shadow: 0 7px 16px rgba(0,0,0,0.15);
+ }
+ .hero-buttons button:hover svg{
+    transform:translateX(3px);
+ }
+ .hero-buttons button:first-child{
+    background-color: #20b76b;
+    color: white;
+    border:2px solid #20b76b;
+ }
+ .hero-buttons button:first-child:hover{
+    background-color: #189957;
+    border-color: #189957;
+ }
+  .hero-buttons button:nth-child(2){
+    background-color: white;
+    color: #20b76b;
+    border:2px solid #20b76b;
+ }
+ .hero-buttons button:nth-child(2):hover{
+    background-color: #20b76b;
+    color: rgb(228, 218, 218);
+    border:2px solid #20b76b;
+ } 
+ .hero-buttons .complaint {
+  background-color: transparent !important;
+  color: #0f9d58 !important;
+  border: 2px solid #0f9d58 !important;
+}
+
+.hero-buttons .complaint:hover {
+  background-color: #74d6a1 !important;
+  border-color: #0f9d58 !important;
+  color:white !important;
+}

@@ -1,0 +1,443 @@
+/* Main Dashboard */
+.admin-dashboard {
+  min-height: 100vh;
+  padding: 30px;
+  background: #f3f7f8;
+  color: #172b2b;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.admin-dashboard h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #073f35;
+}
+
+.admin-dashboard > p {
+  margin: 0 0 28px;
+  color: #647477;
+  font-size: 16px;
+}
+
+/* Statistics Cards */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.admin-stat-card {
+  min-height: 125px;
+  padding: 20px 16px;
+  border: 1px solid #dce8e5;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(16, 55, 46, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.admin-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 18px rgba(16, 55, 46, 0.09);
+}
+
+.admin-stat-card h2 {
+  margin: 12px 0 8px;
+  font-size: 30px;
+  color: #102e29;
+}
+
+.admin-stat-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #526562;
+}
+
+/* Different Card Colours */
+.admin-stat-card:nth-child(1) {
+  background: #e9f8ef;
+  border-color: #c8edd5;
+}
+
+.admin-stat-card:nth-child(2) {
+  background: #fff8e6;
+  border-color: #f5e6b6;
+}
+
+.admin-stat-card:nth-child(3) {
+  background: #eaf4ff;
+  border-color: #cde4ff;
+}
+
+.admin-stat-card:nth-child(4) {
+  background: #e8f8ee;
+  border-color: #c8ecd4;
+}
+
+.admin-stat-card:nth-child(5) {
+  background: #f3edff;
+  border-color: #e2d6ff;
+}
+
+.admin-stat-card:nth-child(6) {
+  background: #fff0f1;
+  border-color: #ffd8dc;
+}
+
+/* Overview Sections */
+.admin-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+/* Bottom Sections */
+.admin-bottom {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 20px;
+}
+
+/* Common Panels */
+.admin-panel {
+  min-width: 0;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e7eeee;
+  border-radius: 13px;
+  box-shadow: 0 4px 14px rgba(16, 55, 46, 0.04);
+  box-sizing: border-box;
+}
+
+.admin-panel h3 {
+  margin: 0 0 18px;
+  color: #123e35;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.admin-panel p {
+  color: #72817f;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Responsive Layout */
+@media (max-width: 1200px) {
+  .admin-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 18px;
+  }
+
+  .admin-dashboard h1 {
+    font-size: 26px;
+  }
+
+  .admin-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .admin-overview,
+  .admin-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-stat-card {
+    padding: 16px 12px;
+  }
+
+  .admin-stat-card h2 {
+    font-size: 25px;
+  }
+
+  .admin-panel {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Recent Complaints Table */
+.admin-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.admin-table th {
+  background-color: #f3f7f6;
+  color: #344b46;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.admin-table td {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f8fbfa;
+}
+
+/* Complaint ID ko readable rakho */
+.admin-table th:first-child,
+.admin-table td:first-child {
+  min-width: 155px;
+}
+
+/* Complaint title ko extra space */
+.admin-table th:nth-child(2),
+.admin-table td:nth-child(2) {
+  min-width: 170px;
+  white-space: normal;
+}
+
+/* Status badges */
+.admin-status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-status.pending {
+  background: #fff2d6;
+  color: #946200;
+}
+
+.admin-status.assigned {
+  background: #dceafe;
+  color: #2456a6;
+}
+
+.admin-status.in-progress {
+  background: #f1e5ff;
+  color: #7540a5;
+}
+
+.admin-status.resolved {
+  background: #dcfce7;
+  color: #187443;
+}
+
+/* Complaint Status Overview */
+.status-overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.status-item span {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.status-item strong {
+  font-size: 28px;
+  color: #1e293b;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .status-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .status-overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Category-wise Complaints */
+
+.category-panel {
+  padding: 24px;
+}
+
+.category-panel h3 {
+  font-size: 20px;
+  color: #263b35;
+  margin-bottom: 8px;
+}
+
+.category-subtitle {
+  color: #78847f;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f4f8f5;
+  border: 1px solid #e2ebe4;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 14px rgba(30, 70, 50, 0.08);
+}
+
+.category-item span {
+  color: #465b50;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.category-item strong {
+  min-width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #dcefe2;
+  color: #247447;
+  border-radius: 9px;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .category-list {
+    grid-template-columns: 1fr;
+  }
+}
+/* Admin Dashboard Stat Icons */
+.admin-stat-icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 12px;
+  color: #218c74;
+  stroke-width: 1.8;
+}
+
+/* Icon spacing inside stat cards */
+.admin-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Stat numbers */
+.admin-stat-card h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Stat labels */
+.admin-stat-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+.category-icon {
+  width: 24px;
+  height: 24px;
+  color: #218c74;
+  flex-shrink: 0;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-item span {
+  flex: 1;
+}
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 16px 0;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #374151;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #e8f5e9;
+  border-color: #218c74;
+  color: #218c74;
+}
+
+.pagination button.active {
+  background-color: #218c74;
+  border-color: #218c74;
+  color: #ffffff;
+}
+
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

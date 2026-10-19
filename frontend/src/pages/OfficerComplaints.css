@@ -1,0 +1,259 @@
+.officer-complaints {
+  padding: 30px;
+}
+
+.complaints-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.complaints-header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.complaints-header p {
+  margin-top: 8px;
+  color: #777;
+}
+
+.total-assigned {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #eefaf5;
+  padding: 20px 30px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.total-assigned h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.total-assigned span {
+  color: #666;
+}
+.complaints-filters {
+  margin-top: 25px;
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 0 15px;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.complaints-filters select {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: white;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+.assigned-table-card {
+  margin-top: 20px;
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+}
+
+.assigned-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+.assigned-table th {
+  background: #f1f4f3;
+  padding: 14px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.assigned-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.assigned-table tr:last-child td {
+  border-bottom: none;
+}
+/* Category badges */
+
+.category {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.street-light {
+  background: #e2efff;
+  color: #2868a8;
+}
+
+.sanitation {
+  background: #e1f5e8;
+  color: #287b4a;
+}
+
+.roads {
+  background: #ffe7e7;
+  color: #bd4d4d;
+}
+
+.water {
+  background: #e1f1ff;
+  color: #2773a8;
+}
+
+.infrastructure {
+  background: #eee5ff;
+  color: #704ca0;
+}
+
+
+/* Status badges */
+
+.status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status.pending {
+  background: #fff2cc;
+  color: #98751b;
+}
+
+.status.in-progress {
+  background: #e0ecff;
+  color: #3268a8;
+}
+
+.status.resolved {
+  background: #ddf4e3;
+  color: #277b49;
+}
+
+
+/* View button */
+
+.view-btn {
+  border: none;
+  background: #174d43;
+  color: white;
+  padding: 7px 13px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.view-btn:hover {
+  background: #0f3d35;
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+.complaint-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.complaint-modal-content {
+  width: 500px;
+  max-width: 90%;
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.complaint-modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.complaint-modal-content p {
+  margin: 12px 0;
+  color: #444;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 7px;
+  background: #2f6f73;
+  color: white;
+  cursor: pointer;
+}
+.status-update {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-update select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.update-status-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #2f6f73;
+  color: white;
+  cursor: pointer;
+}
+
+.update-status-btn:hover {
+  background: #24595d;
+}

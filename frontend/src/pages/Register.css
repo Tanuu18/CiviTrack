@@ -1,0 +1,250 @@
+.register.page{
+    min-height: 100vh;
+    background: #f4f8f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:60px 20px;
+    box-sizing: border-box;
+}
+.register-container{
+    width:100%;
+    max-width: 950px;
+    height: 580px;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    margin: 50px auto 0;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.register-left{
+  width:45%;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+   box-sizing: border-box; 
+  /* background: #0f9d58; */
+  /* color:white;
+  padding: 60px 45px;
+  display: flex;
+   flex-direction: column;
+   justify-content: center;
+   box-sizing: border-box; */
+}
+.register-image{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display:block;
+    filter:blur(1px);
+    transform: scale(1.02);
+}
+.register-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 45px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: black;
+  background: rgba(0, 80, 45, 0.25);
+}
+.brand-content{
+    display:flex;
+    flex-direction: column;
+    gap:0;
+}
+.brand-content h1{
+    margin:0;
+}
+.register-tagline{
+    margin:0;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+.register-overlay h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  color: #0b8043;
+}
+
+/* .register-tagline {
+  margin: 2px 0 0;
+  font-size: 17px;
+  font-weight: 500;
+} */
+ .register-right .input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.register-right .input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+   transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+}
+
+.register-right .input-wrapper input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  box-sizing: border-box;
+}
+.overlay-line {
+  width: 75px;
+  height: 4px;
+  background: #0f9d58;
+  margin: 35px 0 30px;
+  border-radius: 5px;
+}
+
+.register-overlay h2 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 700; 
+}
+
+.overlay-description {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 300px;
+}
+.carousel-dots {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.carousel-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.carousel-dots span.active {
+  background: white;
+  width: 12px;
+  height: 12px;
+}
+
+.register-left h1{
+    font-size: 38px;
+    margin:0 0 25px;
+}
+.register-left h2{
+    font-size: 28px;
+    margin:0 0 18px;
+}
+.register-left p{
+    font-size: 16px;
+    line-height: 1.7;
+    margin:0;
+}
+.register-right{
+    width:55%;
+
+  padding: 45px 50px;
+  display: flex;
+   flex-direction: column;
+   justify-content: center;
+   box-sizing: border-box;
+}
+.register-right h2{
+    margin: 0;
+    font-size: 30px;
+    color:#222;
+}
+.register-subtitle{
+    margin:8px 0 28px;
+    color:#777;
+    font-size: 14px;
+}
+.register-right form{
+    display: flex;
+    flex-direction: column;
+}
+.register-right label{
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color:#333;
+}
+.register-right input{
+    width:100%;
+    padding:12px 14px;
+    margin-bottom: 18px;
+    border:1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+.register-right input:focus{
+    border-color: #0f9d58;
+}
+.register-right button{
+    width:100%;
+    padding:13px;
+    margin-top: 5px;
+  border: none;
+  border-radius: 8px;
+  background: #0f9d58;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.register-right button:hover {
+  background: #0b8043;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 14px;
+  color: #777;
+}
+
+.login-link span {
+  color: #0f9d58;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .register-container {
+    flex-direction: column;
+  }
+.register-left,
+  .register-right {
+    width: 100%;
+  }
+
+  .register-left {
+    padding: 35px;
+  }
+
+  .register-left h1 {
+    font-size: 32px;
+  }
+
+  .register-left h2 {
+    font-size: 23px;
+  }
+
+  .register-right {
+    padding: 35px 25px;
+  }
+}
