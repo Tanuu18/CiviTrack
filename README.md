@@ -88,21 +88,6 @@ cd backend
 npm install
 ```
 
-Create a .env file inside the backend folder and configure your environment variables:
-
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-
-CLOUD_NAME=your_cloudinary_name
-CLOUD_API_KEY=your_cloudinary_api_key
-CLOUD_API_SECRET=your_cloudinary_api_secret
-
-GEMINI_API_KEY=your_gemini_api_key
-
-
-Use the exact environment variable names expected by your backend code.
-
 Start the backend:
 
 ```bash
