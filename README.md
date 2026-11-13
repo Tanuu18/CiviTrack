@@ -51,6 +51,34 @@ Citizens can report civic problems with images and location details, track compl
 | API Testing | Bruno |
 | Version Control | Git & GitHub |
 
+## 📸 Project Screenshots
+
+### 1. Landing Page
+![Landing Page](screenshots/landing-page.png)
+
+### 2. Report Issue
+![Report Issue](screenshots/report-issue.png)
+
+### 3. Track Complaint
+![Track Complaint](screenshots/track-complaint.png)
+
+### 4. Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### 5. Officer Management
+![Officer Management](screenshots/officer-management.png)
+
+### 6. Officer Dashboard
+![Officer Dashboard](screenshots/officer-dashboard.png)
+
+### 7. AI Assessment
+![AI Assessment](screenshots/ai-assessment.png)
+
+### 8. Map Visualization
+![Map Visualization](screenshots/map-visualization.png)
+
+### 9. Officer Profile
+![Officer Profile](screenshots/officer-profile.png)
 ## 📁 Project Structure
 
 CiviTrack/
