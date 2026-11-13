@@ -54,7 +54,7 @@ Citizens can report civic problems with images and location details, track compl
 ## 📸 Project Screenshots
 
 ### 1. Landing Page
-![Landing Page](screenshots/Landing Page.png)
+![Landing Page](screenshots/landing-page.png)
 
 ### 2. Report Issue
 ![Report Issue](screenshots/report-issue.png)
