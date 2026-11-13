@@ -29,16 +29,6 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-.photo-placeholder {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: #e3f2eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 45px;
-}
 
 .profile-basic {
   flex: 1;
@@ -106,4 +96,142 @@
   padding: 12px;
   border-radius: 8px;
   font-size: 14px;
+}
+
+.edit-profile-form {
+  margin-top: 20px;
+  padding: 25px;
+  background: #f8fbf8;
+  border: 1px solid #dce9df;
+  border-radius: 12px;
+}
+
+.edit-profile-form h2 {
+  color: #245c3a;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input {
+  padding: 11px 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 15px;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #398653;
+}
+
+.profile-preview {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-top: 12px;
+  border: 2px solid #398653;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.edit-profile-modal {
+  background: #fff;
+  width: 100%;
+  max-width: 550px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.edit-profile-modal h2 {
+  color: #245c3a;
+  margin-bottom: 22px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.form-actions button {
+  padding: 11px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Save Button */
+.form-actions button:first-child {
+  background: #267348;
+  color: white;
+}
+
+.form-actions button:first-child:hover {
+  background: #1d5937;
+  transform: translateY(-2px);
+}
+
+/* Cancel Button */
+.form-actions button:last-child {
+  background: #e9eeee;
+  color: #444;
+}
+
+.form-actions button:last-child:hover {
+  background: #d5dddd;
+}
+
+
+
+
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  min-width: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e3f2eb;
+}
+
+.profile-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }

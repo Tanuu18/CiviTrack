@@ -1,27 +1,34 @@
 import React,{useState} from "react";
 import "./TrackComplaint.css";
 import api from "../utils/axios";
-
+import { useTranslation } from "react-i18next";
 const TrackComplaint = () => {
+  const {t}=useTranslation();
   const [showResult,setShowResult]=useState(false);
   const [complaint,setComplaint]=useState(null);
    const [complaintId,setComplaintId]=useState("");
    const statusSteps=[
-    "Pending",
-    "Assigned",
-    "In Progress",
-    "Resolved"
+    "pending",
+    "assigned",
+    "inProgress",
+    "resolved"
   ];
+  const statusMap = {
+  Pending: "pending",
+  Assigned: "assigned",
+  "In Progress": "inProgress",
+  Resolved: "resolved",
+};
   const currentStatusIndex=statusSteps.indexOf(complaint?.status); 
 
   return (
     <div className="track-page">
       <div className="track-container">
 
-        <h2>Track Your Complaint</h2>
+        <h2>{t("track2.title")}</h2>
 
         <p className="track-subtitle">
-          Enter your complaint ID to check the status of your complaint.
+          {t("track2.subtitle")}
         </p>
 
         <form onSubmit={ async(e)=>{
@@ -39,45 +46,61 @@ const TrackComplaint = () => {
           }
           
         }}>
-          <label>Complaint ID</label>
+          <label>{t("track2.complaintId")}</label>
 
           <input
             type="text" name="complaintId"
-            placeholder="Enter your complaint ID"
+            placeholder={t("track2.idPlaceholder")}
           />
 
           <button type="submit">
-            Track Complaint
+           {t("track2.trackButton")}
           </button>
         </form>
        {showResult && ( <div className="complaint-result">
 
   <div className="result-header">
     <div>
-      <p className="result-label">Complaint ID</p>
+      <p className="result-label">{t("track2.complaintId")}</p>
       <h3>{complaint?.complaintId}</h3>      
     </div>
 
+   
     <span className="status-badge">
-     {complaint?.status}
-    </span>
+  {t(
+    `track2.status.${
+      statusMap[complaint?.status] || "unknown"
+    }`
+  )}
+</span>
   </div>
 
+  
   <h3 className="complaint-title">
-    {complaint?.title}
-  </h3>
+  {t(`track2.titles.${complaint?.title}`, {
+    defaultValue: complaint?.title
+  })}
+</h3>
 
   <div className="complaint-info">
     <p>
-      <strong>Category:</strong> {complaint?.category}
+     <strong>{t("track2.category")}</strong>{" "}
+{t(`track2.categories.${complaint?.category}`, {
+  defaultValue: complaint?.category
+})}
+     
     </p>
 
     <p>
-      <strong>Location:</strong>{complaint?.location}
+      <p>
+  <strong>{t("track2.location")}</strong>{" "}
+  {complaint?.location}
+</p>
+      
     </p>
 
     <p>
-      <strong>Reported on:</strong> {" "}
+      <strong>{t("track2.reportedOn")}</strong> {" "}
       {new 
       Date(complaint.createdAt).toLocaleDateString("en-IN",{
         day:"2-digit",
@@ -88,7 +111,7 @@ const TrackComplaint = () => {
     </p>
 
     <p>
-      <strong>Last updated:</strong> {" "}
+      <strong>{t("track2.lastUpdated")}</strong> {" "}
       {new 
       Date(complaint.updatedAt).toLocaleDateString("en-IN",{
         day:"2-digit",
@@ -100,35 +123,7 @@ const TrackComplaint = () => {
   </div>
   
   <div className="status-section">
-    <h3>Complaint Status</h3>
-
-    {/* <div className="status-timeline">
-      <div className="status-step completed">
-        <span>✓</span>
-        <p>Reported</p>
-      </div>  
-
-      <div className="status-line"></div>
-
-      <div className="status-step completed">
-        <span>✓</span>
-        <p>Assigned</p>
-      </div>
-
-      <div className="status-line"></div>
-
-      <div className="status-step active">
-        <span>●</span>
-        <p>In Progress</p>
-      </div>
-
-      <div className="status-line"></div>
-
-      <div className="status-step">
-        <span>○</span>
-        <p>Resolved</p>
-      </div> */}
-    {/* </div> */}
+    <h3>{t("track2.complaintStatus")}</h3>
     <div className="status-timeline">
   {statusSteps.map((status, index) => (
     <React.Fragment key={status}>
@@ -146,9 +141,9 @@ const TrackComplaint = () => {
         </div>
 
         <p>
-          {status === "Pending"
-            ? "Reported"
-            : status}
+          {status === "pending"
+            ? t("track2.reportedOn")
+            : t(`track2.status.${status}`)}
         </p>
       </div>
 

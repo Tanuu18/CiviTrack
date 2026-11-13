@@ -4,15 +4,21 @@ import { createComplaint, getAdminDashboardStats, getAllAdminComplaints, getComp
 import upload from "../middleware/uploadMiddleware.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import roleMiddleware from "../middleware/roleMiddleware.js";
-
+//import { uploadImage } from "../controller/imageUploadController.js";
+//import upload from "../middleware/multer.js";
 const router = express.Router();
 
 router.post(
   "/",
   authMiddleware,
-  upload.single("image"),
-  createComplaint
-);
+  upload.single("image"),            
+  createComplaint              
+);                
+// router.post(
+//   "/upload",
+//   upload.single("image"),
+//   uploadImage
+// );
 router.get("/officer",authMiddleware,roleMiddleware("officer"),getOfficerComplaints);
 router.get("/officer/activities",authMiddleware,roleMiddleware("officer"),getOfficerActivities);
 router.put("/:complaintId/status",authMiddleware,roleMiddleware("officer"),updateComplaintStatus);

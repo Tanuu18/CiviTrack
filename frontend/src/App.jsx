@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import HowItWorks from "./pages/HowItWorks";
-import Issues from "./pages/Issues";
+// import Issues from "./pages/Issues";
 import AboutUs from "./pages/AboutUs";
 import Footer from "./components/Footer";
 import Register from "./pages/Register";
@@ -50,7 +50,7 @@ function AppContent() {
         <Routes> 
           <Route path="/" element={<Hero />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/issues" element={<Issues />} />
+          {/* <Route path="/issues" element={<Issues />} /> */}
           <Route path="/about" element={<AboutUs />} />
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
@@ -69,8 +69,7 @@ function AppContent() {
      <Route path="dashboard" element={<AdminDashboard/>}/>
         </Route>
         </Routes> 
-      </main>      
-
+      </main>    
       {location.pathname !== "/" && 
       location.pathname!=="/register" && 
       location.pathname!=="/login" && location.pathname!=="/officer" && 

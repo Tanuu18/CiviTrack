@@ -1,6 +1,8 @@
 import User from "../models/Users.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Complaint from "../models/Complaint.js";
+import cloudinary from "../config/cloudinary.js";
 export const registerUser=async(req,res)=>{
     try {
         const {name,email,password}=req.body;
@@ -165,6 +167,103 @@ export const getOfficers=async(req,res)=>{
   }
 }
 
+export const deleteOfficer = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Check whether this officer has assigned complaints
+    const assignedComplaints = await Complaint.countDocuments({
+      assignedOfficer: id,
+    });
+
+    if (assignedComplaints > 0) {
+      return res.status(400).json({
+        message: "Cannot delete officer. Reassign their complaints first.",
+      });
+    }
+
+    const deletedOfficer = await User.findOneAndDelete({
+      _id: id,
+      role: "officer",
+    });
+
+    if (!deletedOfficer) {
+      return res.status(404).json({
+        message: "Officer not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Officer deleted successfully",
+    });
+
+  } catch (error) {
+    console.log("DELETE OFFICER ERROR:", error);
+
+    return res.status(500).json({
+      message: "Failed to delete officer",
+    });
+  }
+};
+
+
+export const updateOfficer = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const {
+      name,
+      email,
+      phone,
+      department,
+      designation,
+      officerId,
+      area
+    } = req.body;
+
+    const updatedOfficer = await User.findOneAndUpdate(
+      { _id: id, role: "officer" },
+      {
+        name,
+        email,
+        phone,
+        department,
+        designation,
+        officerId,
+        area
+      },
+      {
+        new: true,
+        runValidators: true
+      }
+    ).select("-password");
+
+    if (!updatedOfficer) {
+      return res.status(404).json({
+        message: "Officer not found"
+      });
+    }
+
+    return res.status(200).json({
+      message: "Officer updated successfully",
+      officer: updatedOfficer
+    });
+
+  } catch (error) {
+    console.log("UPDATE OFFICER ERROR:", error);
+
+    if (error.code === 11000) {
+      return res.status(409).json({
+        message: "Email already exists"
+      });
+    }
+
+    return res.status(500).json({ 
+      message: "Server error"
+    });
+  }
+};
+
 
 export const getProfile = async (req, res) => {
   try {
@@ -186,5 +285,60 @@ export const getProfile = async (req, res) => {
     return res.status(500).json({
       message: "Server error"
     });
+  }
+};
+
+export const updateProfile = async (req, res) => {
+  try {
+    const { name, phone, department, designation, area } = req.body;
+
+    // const updateData = {
+    //   name,//name:name
+    //   phone,
+    //   department,
+    //   designation,
+    //   area,
+    // };
+    const updateData = {};
+
+if (name !== undefined) updateData.name = name;
+if (phone !== undefined) updateData.phone = phone;
+if (department !== undefined) updateData.department = department;
+if (designation !== undefined) updateData.designation = designation;
+if (area !== undefined) updateData.area = area;
+
+    if (req.file) {
+      const uploadedImage = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(//cloudinary sdk method-it helps in uploading image on cloudinary
+          { folder: "CiviTrack/officer-profiles" },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          }
+        );
+
+        stream.end(req.file.buffer);
+      });
+      
+      updateData.profileImage = uploadedImage.secure_url;
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      updateData,
+      { new: true, runValidators: true }
+    ).select("-password");
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({
+      message: "Profile updated successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error("UPDATE PROFILE ERROR:", error);
+    return res.status(500).json({ message: "Server error" });
   }
 };

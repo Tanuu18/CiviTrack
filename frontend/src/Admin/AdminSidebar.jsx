@@ -32,7 +32,7 @@ const AdminSidebar = () => {
 
         <NavLink to="/admin/users">Users</NavLink> */}
 
-        <NavLink to="/admin/notifications">Notifications</NavLink>
+        {/* <NavLink to="/admin/notifications">Notifications</NavLink> */}
 
       </nav>
 

@@ -63,10 +63,7 @@ const AddOfficer = () => {
          <p className="add-officer-subtitle">Create an official officer account for CiviTrack.</p>
       <form className="officer-form" onSubmit={handleSubmit}>
         <div className="form-grid">
-        {/* <div className="form-group">
-          <label>Name</label>
-          <input type="text" name="name" />
-        </div> */}
+        
           <div className="form-group">
           <label>Name</label>
 
@@ -82,7 +79,7 @@ const AddOfficer = () => {
            </div>
           <div className="form-group">
             <label>Official Email</label>
-            {/* <input type="email" name="email" placeholder="Enter official email"/> */}
+            
             <div className="officer-input-wrapper">
   <Mail className="officer-input-icon" />
   <input
@@ -98,12 +95,12 @@ const AddOfficer = () => {
   <Phone className="officer-input-icon" />
   <input type="text" name="phone" />
 </div>
-          {/* <input type="text" name="phone" /> */}
+          
         </div>
 
         <div className="form-group">
           <label>Department</label>
-          {/* <input type="text" name="department" /> */}
+          
           <div className="officer-input-wrapper">
   <Building2 className="officer-input-icon" />
   <input type="text" name="department" />
@@ -112,7 +109,7 @@ const AddOfficer = () => {
 
         <div className="form-group">
           <label>Designation</label>
-          {/* <input type="text" name="designation" /> */}
+          
           <div className="officer-input-wrapper">
   <BriefcaseBusiness className="officer-input-icon" />
   <input type="text" name="designation" />
@@ -121,7 +118,7 @@ const AddOfficer = () => {
 
         <div className="form-group">
           <label>Officer ID</label>
-          {/* <input type="text" name="officerId" /> */}
+          
           <div className="officer-input-wrapper">
   <BadgeCheck className="officer-input-icon" />
   <input type="text" name="officerId" />
@@ -130,7 +127,7 @@ const AddOfficer = () => {
 
         <div className="form-group">
           <label>Area / Ward</label>
-          {/* <input type="text" name="area" /> */}
+          
           <div className="officer-input-wrapper">
   <MapPin className="officer-input-icon" />
   <input type="text" name="area" />
@@ -139,7 +136,7 @@ const AddOfficer = () => {
 
         <div className="form-group">
           <label>Password</label>
-          {/* <input type="password" name="password" /> */}
+         
           <div className="officer-input-wrapper">
   <LockKeyhole className="officer-input-icon" />
   <input type="password" name="password" />

@@ -4,110 +4,106 @@ import { FileText ,MapPin,Wrench,CheckCircle,ArrowRight,FileCheck,Building2,Hamm
 import civicImage from "../assets/civic4.png"
 import parkImage from "../assets/park.png"
 import {Button} from "@mui/material"
+import { useTranslation } from 'react-i18next'
 const HowItWorks = () => {
+  const {t,i18n}=useTranslation();  
   return (
     <>
     <div className="how-it-works">
     <div className="how-header">
         <img src={civicImage} alt="city" className='city-image'/>
-       <h1 >How CIVI<span className='track2'>TRACK</span> Works</h1>
+       
+       <h1>
+  {t("howTitle")} 
+  <span className="track2">{t("track")}</span>
+  {t("works")} ?
+</h1>
        <p>
-        A simple and transparent way to report, track, and resolve civic issues
+        {t("howDescription")}
        </p>
     </div>
     <div className='steps'>
         <div className="step-card">
             <FileText size={32}/>
             <h2>01</h2>
-            <h3>Report</h3>
-            <p>
-              Spot a civic issue? Submit a complaint with its category
-              description, photo and location.
-            </p>
+            <h3>{t("reportStep")}</h3> 
+            
+            <p>{t("reportDescription")}</p>
         </div>
         <ArrowRight className="step-arrow" size={24}/>
         <div className="step-card">
             <MapPin size={32}/>
             <h2>02</h2>
-            <h3>Track</h3>
-            <p>
-               Get a unique Complaint ID and track your complaint status anytime,anywhere.
-            </p>
+            
+            <h3>{t("trackStep")}</h3>
+            <p>{t("trackDescription")}</p>
         </div>
  <ArrowRight className="step-arrow" size={24}/>
         <div className="step-card">
             <Wrench size={32}/>
             <h2>03</h2>
-            <h3>Resolve</h3>
-            <p>
-                The concerned department takes action to resolve the issue.
-            </p>
+            
+            <h3>{t("resolveStep")}</h3>
+<p>{t("resolveDescription")}</p>
         </div>
          <ArrowRight className="step-arrow" size={24}/>
         <div className="step-card">
             <CheckCircle size={32}/>
             <h2>04</h2>
-            <h3>Verify</h3>
-            <p>
-               Verify that the reported issue has actually been resolved.
-            </p>
+           
+            <h3>{t("verifyStep")}</h3>
+<p>{t("verifyDescription")}</p>
         </div>
     </div>
     <div className='report-process'>
-        <h2 className='head'>What Happens After You Report an Issue?</h2>
+        <h2 className='head'>{t("processTitle")}</h2>
         <div className="process-cards">
            <div className='process-card'>
            <div className='process-icon'>
              <FileCheck size={24}/>
            </div>
-           {/* <span className='process-number'>01</span> */}
-            {/* <h3>Complaint Submitted</h3> */}
-            <p>You submit a complaint.</p>
+           
+            <p>{t("process1")}</p>
            </div>
            <ArrowRight className="step-arrow" size={24}/>
            <div className='process-card'>
             <div className='process-icon'>
              <Hash size={24}/>
            </div>
-            {/* <span className='process-number'>02</span> */}
-            {/* <h3>Department Assigned</h3> */}
-            <p>Complaint gets a unique ID.</p>
+           
+            <p>{t("process2")}</p>
            </div>
            <ArrowRight className="step-arrow" size={24}/>
            <div className='process-card'>
             <div className='process-icon'>
              <Building2 size={24}/>
            </div>
-            {/* <span className='process-number'>02</span> */}
-            {/* <h3>Department Assigned</h3> */}
-            <p>Complaint is assigned to the concerned department.</p>
+            
+            <p>{t("process3")}</p>
            </div>
            <ArrowRight className="step-arrow" size={24}/>
            <div className='process-card'>
             <div className='process-icon'>
              <Hammer size={24}/>
            </div>
-            {/* <span className='process-number'>03</span> */}
-            {/* <h3>Action Taken</h3> */}
-            <p>Department takes action to resolve the issue.</p>
+            
+            <p>{t("process4")}</p>
            </div>
            <ArrowRight className="step-arrow" size={24}/>
            <div className='process-card'>
             <div className='process-icon'>
              <RefreshCw size={24}/>
            </div>
-            {/* <span className='process-number'>03</span> */}
-            {/* <h3>Action Taken</h3> */}
-            <p>Status gets updated.</p>
+           
+            <p>{t("process5")}</p>
            </div>
            <ArrowRight className="step-arrow" size={24}/>
            <div className='process-card'>
             <div className='process-icon'>
              <CircleCheck size={24}/>
            </div>
-            {/* <span className='process-number'>04</span> */}
-            {/* <h3>Issue Resolved</h3> */}
-            <p>Issue resolved & citizen verifies.</p>
+           
+            <p>{t("process6")}</p>
            </div>
         </div>
     </div>
@@ -116,9 +112,9 @@ const HowItWorks = () => {
         <img src={parkImage} alt="city"/>
      </div>
      <div className="cta-content">
-      <h2>Have a Civic Issue?</h2>
-      <p>Let's make our city a better place to live.</p>
-      <Button>Report an Issue<ArrowRight/></Button> 
+      <h2>{t("ctaTitle")}</h2>
+      <p>{t("ctaDescription")}</p>
+      <Button>{t("ctaButton")}<ArrowRight/></Button> 
      </div>
     </div> 
 

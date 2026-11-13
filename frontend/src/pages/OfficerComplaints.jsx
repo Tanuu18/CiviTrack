@@ -5,7 +5,7 @@ import  Pagination  from "@mui/material/Pagination";
 import api from "../utils/axios";
 
 const OfficerComplaints = () => {
-  const [page,setPage]=useState(1);
+  //const [page,setPage]=useState(1);
   const [complaints,setComplaints]=useState([]);
   const [selectedComplaint,setSelectedComplaint]=useState(null);
   const [status,setStatus]=useState("");
@@ -13,6 +13,9 @@ const OfficerComplaints = () => {
   const [categoryFilter,setCategoryFilter]=useState("All");
   const [search,setSearch]=useState("");
   const [dateFilter,setDateFilter]=useState("");
+  const [aiAnalysis, setAiAnalysis] = useState(null);
+const [aiLoading, setAiLoading] = useState(false);
+const [aiError, setAiError] = useState("");
   const filteredComplaints=complaints.filter((complaint)=>{
     const matchesSearch=complaint.complaintId.toLowerCase().includes(search.toLowerCase()) || 
     complaint.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -23,6 +26,21 @@ const OfficerComplaints = () => {
     toLocaleDateString("en-CA")===dateFilter;
      return (matchesSearch && matchesCategory && matchesStatus && matchesDate);
   });
+  const [currentPage, setCurrentPage] = useState(1);
+const complaintsPerPage = 5;
+
+const totalPages = Math.ceil(
+  filteredComplaints.length / complaintsPerPage
+);
+
+const indexOfLastComplaint = currentPage * complaintsPerPage;
+const indexOfFirstComplaint =
+  indexOfLastComplaint - complaintsPerPage;
+
+const currentComplaints = complaints.slice(
+  indexOfFirstComplaint,
+  indexOfLastComplaint
+);
   useEffect(()=>{
     const fetchComplaints=async()=>{ 
       try {
@@ -47,6 +65,29 @@ const OfficerComplaints = () => {
       
     }
   }
+
+  const handleAIAnalysis = async () => {
+  try {
+    setAiLoading(true);
+    setAiError("");
+    setAiAnalysis(null);
+
+    const response = await api.post("/ai/analyze", {
+     // description: selectedComplaint.description
+     title: selectedComplaint.title,
+  description: selectedComplaint.description,
+  category: selectedComplaint.category,
+  location: selectedComplaint.location
+    });
+
+    setAiAnalysis(response.data.analysis); 
+  } catch (error) {
+    console.log("AI Analysis Error:", error.response?.data || error);
+    setAiError("AI analysis failed. Please try again.");
+  } finally {
+    setAiLoading(false);
+  }
+};
   const handleStatusUpdate = async () => {
   try {
     const response = await api.put(
@@ -123,11 +164,7 @@ const OfficerComplaints = () => {
     <option value="Resolved">Resolved</option>
   </select>
 
-  {/* <select value={dateFilter} onChange={(e)=>setDateFilter(e.target.value)}>
-    <option >Select Date</option>
-    <option>Newest First</option>
-    <option>Oldest First</option>
-  </select> */}
+  
   <input type="date" value={dateFilter} onChange={(e)=>setDateFilter(e.target.value)}/>
 
 </div>
@@ -150,9 +187,14 @@ const OfficerComplaints = () => {
 
       
        <tbody>
-  {filteredComplaints.map((complaint, index) => (
+  {filteredComplaints
+   .slice(
+    (currentPage - 1) * complaintsPerPage,
+    currentPage * complaintsPerPage
+  )
+  .map((complaint, index) => (
     <tr key={complaint._id}>
-      <td>{index + 1}</td>
+      <td>{(currentPage - 1) * complaintsPerPage + index + 1}</td>
 
       <td>{complaint.complaintId}</td>
 
@@ -211,11 +253,7 @@ const OfficerComplaints = () => {
         {selectedComplaint.title}
       </p>
 
-      {/* <p>
-        <strong>Description:</strong>{" "}
-        {selectedComplaint.description}
-      </p> */}
-
+      
       <p>
         <strong>Category:</strong>{" "}
         {selectedComplaint.category}
@@ -225,11 +263,47 @@ const OfficerComplaints = () => {
         <strong>Location:</strong>{" "}
         {selectedComplaint.location}
       </p>
+       {selectedComplaint.image && (
+        <div className="complaint-image-section">
+        <h3>Complaint Image</h3>
+        <img src={selectedComplaint.image} alt="complaint evidence"
+         className="complaint-evidence-image"/>
+         </div>
+        )}
+        
+      <div className="ai-analysis-section">
+  <h3>AI Complaint Assessment</h3>
 
-      {/* <p>
-        <strong>Status:</strong>{" "}
-        {selectedComplaint.status}
-      </p> */}
+  <button
+    className="ai-analysis-btn"
+    onClick={handleAIAnalysis}
+    disabled={aiLoading}
+  >
+    {aiLoading ? "Analyzing..." : "Get AI Suggestions"}
+  </button>
+
+  {aiError && <p>{aiError}</p>}
+
+  {aiAnalysis && (
+    <div className="ai-analysis-result">
+      <p><strong>Category:</strong> {aiAnalysis.category}</p>
+
+
+<p>
+  <strong>Priority:</strong>{" "}
+  <span className={`priority-badge ${aiAnalysis.priority?.toLowerCase()}`}>
+    {aiAnalysis.priority}
+  </span>
+</p>
+<p><strong>Summary:</strong> {aiAnalysis.summary}</p>
+      <p><strong>Impact:</strong> {aiAnalysis.impact}</p>
+
+      <p><strong>Urgency Reason:</strong> {aiAnalysis.urgencyReason}</p>
+
+      <p><strong>Recommended Action:</strong> {aiAnalysis.recommendedAction}</p>
+    </div>
+  )}
+</div>
        <div className="status-update">
   <strong>Status:</strong>
 
@@ -248,7 +322,7 @@ const OfficerComplaints = () => {
   >
     Update Status
   </button>
-</div>
+ </div>
       <button
         className="close-btn"
         onClick={() => setSelectedComplaint(null)}
@@ -258,10 +332,33 @@ const OfficerComplaints = () => {
 
     </div>
   </div>
-)}
+ )}
+  
   <div className="pagination">
-   <Pagination count={3}  color="primary" shape="rounded" onChange={(event,value)=>setPage(value)}/>
-  </div>
+  <button
+    onClick={() => setCurrentPage(prev => prev - 1)}
+    disabled={currentPage === 1}
+  >
+    Previous
+  </button>
+
+  {Array.from({ length: totalPages }, (_, index) => (
+    <button
+      key={index + 1}
+      className={currentPage === index + 1 ? "active" : ""}
+      onClick={() => setCurrentPage(index + 1)}
+    >
+      {index + 1}
+    </button>
+  ))}
+
+  <button
+    onClick={() => setCurrentPage(prev => prev + 1)}
+    disabled={currentPage === totalPages || totalPages === 0}
+  >
+    Next
+  </button>
+</div> 
 
 </div>
     </div>

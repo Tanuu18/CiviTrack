@@ -2,7 +2,9 @@ import React,{useState} from 'react'
 import "./ReportIssue.css"
 import api from '../utils/axios';
 import { Check ,X} from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 const ReportIssue = () => {
+  const {t}=useTranslation();
   const [submittedComplaint,setSubmittedComplaint]=useState(null);
   const [toast,setToast]=useState(null);
    const [coordinates,setCoordinates]=useState(null);
@@ -133,25 +135,25 @@ async (position) => {
           </div>
       )}
        <div className='report-container'>
-        <h1>Report an Issue</h1>
+        <h1>{t("reportTitle")}</h1>
         <p className="report-subtitle">
-            Help us make your community cleaner,safer and better.
+            {t("reportSubtitle")}
         </p>
         <form onSubmit={handleSubmit}>
-            <label>Issue Title</label>
-            <input type="text" name="title" placeholder='Enter Issue title'/>
-            <label>Category</label>
+            <label>{t("issueTitle")}</label>
+            <input type="text" name="title" placeholder={t("issueTitlePlaceholder")}/>
+            <label>{t("category")}</label>
             <select name="category">
-                <option value="">Select category</option>
-                <option value="Roads">Roads</option>
-                <option value="Garbage">Garbage</option>  
-                <option value="Street-Light">Street-light</option>
-                <option value="Water Supply">Water Supply</option> 
-                <option value="Other">Other</option> 
+                <option value="">{t("selectCategory")}</option>
+                <option value="Roads">{t("roads")}</option>
+                <option value="Garbage">{t("garbage")}</option>  
+                <option value="Street-Light">{t("streetLight")}</option>
+                <option value="Water Supply">{t("waterSupply")}</option> 
+                <option value="Other">{t("other")}</option> 
             </select>              
-            <label>Description</label>
-            <textarea name="description" placeholder="Describe the issue..." rows="5"></textarea>
-            <label>Location</label>
+            <label>{t("description")}</label>
+            <textarea name="description" placeholder={t("descriptionPlaceholder")} rows="5"></textarea>
+            <label>{t("location")}</label>
             <input name="location"
              type="text"
              value={location}
@@ -162,7 +164,7 @@ async (position) => {
              } 
             }
              
-              placeholder="Enter issue location"/>
+              placeholder={t("locationPlaceholder")}/>
               
 <button
   type="button"
@@ -170,8 +172,8 @@ async (position) => {
   disabled={locationLoading}
 >
   {locationLoading
-    ? "Getting Location..."
-    : "Use My Current Location"}
+    ?t( "gettingLocation")
+    : t("useCurrentLocation")}
 </button>
 
 {locationError && (
@@ -186,11 +188,10 @@ async (position) => {
     Longitude: {coordinates.longitude}
   </p>
 )}
-
-            <label>Upload Image</label> 
+<label>{t("uploadImage")}</label>
+            
             {/* <input type="file" accept="image/*"/>   */}
-            <label>Upload Image</label>
-
+            
 <input
   type="file"
   name="image"
@@ -216,7 +217,7 @@ async (position) => {
 
 {imagePreview && (
   <div className="image-preview-container">
-    <p>Image Preview</p>
+    <p>{t("imagePreview")}</p>
 
     <img
       src={imagePreview}
@@ -232,11 +233,11 @@ async (position) => {
         setImagePreview("");
       }}
     >
-      Remove Image
+     {t("removeImage")}
     </button>
   </div>
 )}
-            <button type="submit">Submit Complaint</button> 
+            <button type="submit">{t("submitComplaint")}</button> 
         </form>
        </div>
     </div>

@@ -4,6 +4,7 @@ import Counter from "../models/Counter.js";
 import User from "../models/Users.js";
 import Activity from "../models/Activity.js";
 import cloudinary from "../config/cloudinary.js";
+import ai from "../config/gemini.js";
 export const createComplaint = async (req, res) => {
   try { 
     const {
@@ -15,14 +16,55 @@ export const createComplaint = async (req, res) => {
       longitude
     } = req.body;
     let imageUrl = "";
+    let aiAnalysis = {
+  category: "",
+  priority: null,
+  summary: "",
+};
+
+try {
+  const aiResponse = await ai.models.generateContent({
+    model: "gemini-3.1-flash-lite",
+    contents: `
+      Analyze this civic complaint:
+
+      Title: ${title}
+      Description: ${description}
+
+      Return JSON with:
+      {
+        "category": "Road, Water Supply, Electricity, Sanitation, or Other",
+        "priority": "Low, Medium, High, or Critical",
+        "summary": "A short summary of the complaint"
+      }
+
+      Return only valid JSON.
+    `,
+    config: {
+      responseMimeType: "application/json",
+    },
+  });
+
+  aiAnalysis = JSON.parse(aiResponse.text);
+
+} catch (aiError) {
+  console.error("AI Analysis Failed:", aiError);
+}
+
 
 if (req.file) {
   const uploadedImage = await new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
-      { folder: "CiviTrack/complaints" },
+      { folder: "CiviTrack/complaints" ,upload_preset:"ml_default"},
       (error, result) => {
         if (error) {
           console.log("cloudinary error",error);
+          console.log("cloudinary error details",{
+            message:error.message,
+            http_code:error.http_code,
+            name:error.name,
+            response:error.error,
+          });
           
           reject(error);
         } else {
@@ -74,7 +116,8 @@ if (req.file) {
       location,
       latitude:latitude ?? null,
       longitude:longitude ?? null,
-      imageUrl,
+      image:imageUrl,
+      aiAnalysis:aiAnalysis,
       assignedOfficer:officer?officer._id:null,
       status:officer?"Assigned":"Pending"
     });
@@ -98,10 +141,10 @@ if (req.file) {
 
       complaint: {
         complaintId: complaint.complaintId,
-        title: complaint.title,
+        title: complaint.title,  
         description: complaint.description,
         category: complaint.category,
-        location: complaint.location,
+        location: complaint.location,  
         status: complaint.status
       }
     });
@@ -142,7 +185,9 @@ export const getComplaintById=async(req,res)=>{
     complaintId: complaint.complaintId,
     title: complaint.title,
     category: complaint.category,
+    description:complaint.description,
     location: complaint.location,
+    image:complaint.image,
     status: complaint.status,
     createdAt:complaint.createdAt,
     updatedAt:complaint.updatedAt

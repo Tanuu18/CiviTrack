@@ -64,6 +64,21 @@ fetchActivities();
 
   return `${days}d ago`;
 };
+const [currentPage, setCurrentPage] = useState(1);
+const complaintsPerPage = 5;
+
+const totalPages = Math.ceil(
+  complaints.length / complaintsPerPage
+);
+
+const indexOfLastComplaint = currentPage * complaintsPerPage;
+const indexOfFirstComplaint =
+  indexOfLastComplaint - complaintsPerPage;
+
+const currentComplaints = complaints.slice(
+  indexOfFirstComplaint,
+  indexOfLastComplaint
+);
   return ( 
     <div className='officer-dashboard'>
       <div className='dashboard-header'>
@@ -147,8 +162,13 @@ fetchActivities();
             </thead>
 
            <tbody>
-  {complaints.map((complaint, index) => (
-    <tr key={complaint._id}>
+      {complaints
+      .slice(
+    (currentPage - 1) * complaintsPerPage,
+    currentPage * complaintsPerPage
+  )
+      .map((complaint, index) => (
+     <tr key={complaint._id}>
       <td>{index + 1}</td>
 
       <td>{complaint.complaintId}</td>
@@ -174,12 +194,12 @@ fetchActivities();
         onClick={()=>setSelectedComplaint(complaint)}  
         >View</button>
       </td>
-    </tr>
-  ))}
-</tbody>
+      </tr>
+       ))}
+        </tbody>
         </table>
         {selectedComplaint && (
-  <div className="complaint-modal">
+     <div className="complaint-modal">
     <div className="complaint-modal-content">
 
       <h2>Complaint Details</h2>
@@ -215,9 +235,35 @@ fetchActivities();
         Close
       </button>
 
-    </div>
-  </div>
-)}
+        </div>
+
+      </div>
+      )}
+       <div className="pagination">
+  <button
+    onClick={() => setCurrentPage(prev => prev - 1)}
+    disabled={currentPage === 1}
+  >
+    Previous
+  </button>
+
+  {Array.from({ length: totalPages }, (_, index) => (
+    <button
+      key={index + 1}
+      className={currentPage === index + 1 ? "active" : ""}
+      onClick={() => setCurrentPage(index + 1)}
+    >
+      {index + 1}
+    </button>
+  ))}
+
+  <button
+    onClick={() => setCurrentPage(prev => prev + 1)}
+    disabled={currentPage === totalPages || totalPages === 0}
+  >
+    Next
+  </button>
+</div> 
     </div>
        <div className="right-section">
 
@@ -272,6 +318,8 @@ fetchActivities();
                 </div>
               </div>
     </div>
+   
+
 
   </div>
   <div className="bottom-section">

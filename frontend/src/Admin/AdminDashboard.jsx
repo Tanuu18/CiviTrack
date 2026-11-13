@@ -116,10 +116,7 @@ const categoryIcons = {
 
       {/* Complaint Overview */}
       <div className="admin-overview">
-        {/* <section className="admin-panel">
-          <h3>Complaint Status Overview</h3>
-          <p>Pending · In Progress · Resolved</p>
-        </section> */}
+        
                <section className="admin-panel">
   <h3>Complaint Status Overview</h3>
 
@@ -173,10 +170,7 @@ const categoryIcons = {
         );
 
         return (
-          // <div className="category-item" key={category}>
-          //   <span>{category}</span>
-          //   <strong>{categoryData?.count || 0}</strong>
-          // </div>
+          
           <div className="category-item" key={category}>
   {(() => {
     const Icon = categoryIcons[category];
@@ -194,10 +188,7 @@ const categoryIcons = {
     </div>
   )}
 </section>
-        {/* <section className="admin-panel">
-          <h3>Category-wise Complaints</h3>
-          <p>Roads · Garbage · Street Light · Water Supply · Other</p>
-        </section> */}
+        
       </div>
 
       {/* Recent Complaints and Map */}
@@ -282,10 +273,7 @@ const categoryIcons = {
 </div>
 </section>
 
-        {/* <section className="admin-panel">   
-          <h3>Complaints on Map</h3>
-          <p>Complaint locations will appear here.</p>
-        </section> */}
+        
       </div> 
     </div>
   );

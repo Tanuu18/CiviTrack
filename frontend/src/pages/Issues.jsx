@@ -9,8 +9,9 @@ import garbageImage from "../assets/garbage.png"
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"
 import Map from '../components/Map'
- 
+import { useTranslation } from 'react-i18next' 
 const Issues = () => {
+  const {t}=useTranslation();
   const [showDetails,setShowDetails]=useState(false);
   const [page,setPage]=useState(1);
   return (
@@ -18,10 +19,10 @@ const Issues = () => {
     <div className="Issues-page">
         <Box className="issues-hero">
             <Box className="issues-hero-content">
-                <Typography variant="h1">Civic <span className='track2'>Issues</span></Typography>
+                {/* <Typography variant="h1">Civic <span className='track2'>Issues</span></Typography> */}
+                <Typography variant="h1">{t("issues2.title")}</Typography>
                 <Typography variant="body1">
-                    Explore reported civic issues in your city and<br/>
-                     track their current status.
+                    {t("issues2.description")}
                 </Typography>  
             </Box> 
             <Box className="issues-hero-image">
@@ -34,28 +35,47 @@ const Issues = () => {
       }}> 
       <TextField fullWidth sx={{  
         width:"300px" 
-        }} placeholder='Search Issues...'/>   
+        }} placeholder={t("issues2.search")}/>   
       <Select  sx={{ 
         width:"300px"
       }} defaultValue="all" displayEmpty fullWidth>
-        <MenuItem value="all">All Categories</MenuItem>
+        {/* <MenuItem value="all">All Categories</MenuItem>
         <MenuItem value="roads">Roads</MenuItem>
         <MenuItem value="lights">Street Lights</MenuItem>
         <MenuItem value="garbage">Garbage</MenuItem>
-        <MenuItem value="water">Water Supply</MenuItem>
+        <MenuItem value="water">Water Supply</MenuItem> */}
+        <MenuItem value="all">
+  {t("issues2.allCategories")}
+</MenuItem>
+
+<MenuItem value="roads">
+  {t("issues2.roads")}
+</MenuItem>
+
+<MenuItem value="lights">
+  {t("issues2.streetLights")}
+</MenuItem>
+
+<MenuItem value="garbage">
+  {t("issues2.garbage")}
+</MenuItem>
+
+<MenuItem value="water">
+  {t("issues2.waterSupply")}
+</MenuItem>
       </Select>
       <Select  sx={{width:"300px"}} defaultValue="all" displayEmpty fullWidth>
-        <MenuItem value="all">All Status</MenuItem>
-        <MenuItem value="reported">Reported</MenuItem>
-        <MenuItem value="progress">In Progress</MenuItem>
-        <MenuItem value="resolved">Resolved</MenuItem>
+        <MenuItem value="all">{t("issues2.allStatus")}</MenuItem>
+        <MenuItem value="reported">{t("issues2.reported")}</MenuItem>
+        <MenuItem value="progress">{t("issues2.inProgress")}</MenuItem>
+        <MenuItem value="resolved">{t("issues2.resolved")}</MenuItem>
       </Select>
       
       <FormControl sx={{minWidth:260,width:"260px",marginLeft:"auto"}}>
-        <InputLabel>Sort By</InputLabel>
+        <InputLabel>{t("issues2.sortBy")}</InputLabel>
         <Select label="Sort By">
-            <MenuItem value="newest">Newest First</MenuItem>
-            <MenuItem value="oldest">Oldest First</MenuItem>
+            <MenuItem value="newest">{t("issues2.newestFirst")}</MenuItem>
+            <MenuItem value="oldest">{t("issues2.oldestFirst")}</MenuItem>
         </Select>
       </FormControl>
       </Box>
@@ -270,12 +290,7 @@ const Issues = () => {
 
   </div>
 )} 
-    {/* <div className="pagination">
-  <button className="pagination-btn active">1</button>
-  <button className="pagination-btn">2</button>
-  <button className="pagination-btn">3</button>
-  <button className="pagination-btn next">Next →</button>
-    </div> */}
+    
     </div>
     
   )

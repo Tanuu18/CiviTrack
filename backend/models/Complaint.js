@@ -2,13 +2,17 @@ import mongoose from "mongoose";
 
 const complaintSchema = new mongoose.Schema(
   {
-    complaintId: {
+    image:{
+        type:String,
+        default:""
+    },
+    complaintId: {   
       type: String,
       unique: true,
       required: true
     },
 
-    citizen: {
+    citizen: { 
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true
@@ -28,9 +32,25 @@ const complaintSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+       
+aiAnalysis: {
+  category: {
+    type: String,
+    default: "",
+  },
+  priority: {
+    type: String,
+    enum: ["Low", "Medium", "High", "Critical"],
+    default: null,
+  },
+  summary: {
+    type: String,
+    default: "",
+  },
+},
 
     location: {
-      type: String,
+      type: String, 
       required: true
     },
      latitude:{
