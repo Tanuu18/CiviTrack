@@ -8,7 +8,7 @@ const Map = ({complaints=[]}) => {
   (complaint) =>
     typeof complaint.latitude === "number" &&
     typeof complaint.longitude === "number"
-);
+); 
 
 const mapCenter = firstComplaint
   ? [firstComplaint.latitude, firstComplaint.longitude]

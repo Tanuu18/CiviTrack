@@ -89,6 +89,18 @@ const Navbar = () => {
                 }
               }}>{t("howItWorks")}</Button>
             </Link>
+             <Link to="community-feed" style={{ textDecoration: "none" }}>
+              <Button sx={{
+                color: "#17202a", fontSize: "16px", fontWeight: 500,
+                textTransform: "none",
+                "&:hover": {
+                  color: "#0a6732",
+                  backgroundColor: "#87d5ac",
+                  fontWeight: 600,
+                  borderRadius: "8px"
+                }
+              }}>{t("communityFeed")}</Button>
+            </Link>
             {/* <Link to="issues" style={{ textDecoration: "none" }}>
               <Button sx={{
                 color: "#17202a", fontSize: "16px", fontWeight: 500,

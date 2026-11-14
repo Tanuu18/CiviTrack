@@ -71,7 +71,17 @@ aiAnalysis: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       default: null
-    }
+    },
+    supportedBy:[
+      {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+      },
+    ],
+    isDeleted: {
+  type: Boolean,
+  default: false,
+},
   },
   {
     timestamps: true

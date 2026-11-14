@@ -171,8 +171,39 @@
   "Electricity": "Electricity",
   "Garbage": "Garbage",
   "Drainage": "Drainage",
-  "Other": "Other"
+  "Potholes": "Potholes"
 }
 
+},
+ 
+  "communityFeed": "Community Feed",
+  "communityDescription": "Support real civic issues from your community and help in faster resolution.",
+  "searchComplaints": "Search complaints...",
+  "latest": "Latest",
+  "mostSupported": "Most Supported",
+  "open": "Open",
+  "inProgress": "In Progress",
+  "assigned": "Assigned",
+  "support": "Support",
+  "supported": "Supported",
+  "supports": "Supports",
+  "noComplaintsFound": "No complaints found.",
+  "previous": "Previous",
+  "next": "Next",
+  "yourSupportMakesDifference": "Your Support Makes a Difference!",
+  "supportInfo": "Support genuine issues, help raise priority, and make your city better.",
+  "communityStats": "Community Stats",
+  "totalComplaints": "Total Complaints",
+  "totalSupports": "Total Supports",
+  "resolvedIssues": "Resolved Issues",
+  "trendingCategories": "Trending Categories",
+  "allCategories": "All Categories",
+  "allAreas": "All Areas",
+  "status": {
+  "Open": "Open",
+  "In Progress": "In Progress",
+  "Assigned": "Assigned",
+  "Resolved": "Resolved",
+  "Closed": "Closed"
 }
 }

@@ -94,22 +94,22 @@ const AboutUs = () => {
        <section className='stats-section'>
         <div className='stat-box'>
           <FileWarning className="stat-icon"/>
-          <h2>1,250</h2>
+          {/* <h2>1,250</h2> */}
           <p>{t("about.stats.issuesReported")}</p>
         </div>
         <div className='stat-box'>
           <CircleCheck className="stat-icon"/>
-          <h2>980</h2>
+          {/* <h2>980</h2> */}
           <p>{t("about.stats.issuesResolved")}</p>
         </div>
         <div className='stat-box'>
           <TrendingUp className="stat-icon"/>
-          <h2>65%</h2>
+          {/* <h2>65%</h2> */}
           <p>{t("about.stats.resolutionRate")}</p>
         </div>
         <div className='stat-box'>
           <Users className="stat-icon"/>
-          <h2>5000</h2>
+          {/* <h2>5000</h2> */}
           <p>{t("about.stats.activeCitizens")}</p>
         </div>
 

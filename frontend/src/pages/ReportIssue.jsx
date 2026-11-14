@@ -149,14 +149,14 @@ async (position) => {
                 <option value="Garbage">{t("garbage")}</option>  
                 <option value="Street-Light">{t("streetLight")}</option>
                 <option value="Water Supply">{t("waterSupply")}</option> 
-                <option value="Other">{t("other")}</option> 
+                <option value="Potholes">{t("track2.titles.Potholes")}</option> 
             </select>              
             <label>{t("description")}</label>
             <textarea name="description" placeholder={t("descriptionPlaceholder")} rows="5"></textarea>
             <label>{t("location")}</label>
             <input name="location"
              type="text"
-             value={location}
+             value={location} 
              onChange={(e)=>{
               setLocation(e.target.value);
               setCoordinates(null);

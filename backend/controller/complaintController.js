@@ -161,7 +161,8 @@ if (req.file) {
 export const getOfficerComplaints=async(req,res)=>{
   try {
     const complaints = await Complaint.find({
-      assignedOfficer:req.user.id
+      assignedOfficer:req.user.id,
+      isDeleted:{$ne:true}
     }).sort({createdAt:-1});
     return res.status(200).json({
       message:"officer  complaints fethced",complaints
@@ -181,7 +182,8 @@ export const getComplaintById=async(req,res)=>{
     if(!complaint){
       return res.status(404).json({message:"Complaint not found"});
     }
-    return res.status(201).json({message:"Complaint fetched successfully", complaint: {
+    return res.status(200).json({message:"Complaint fetched successfully", complaint: {
+      _id:complaint._id,
     complaintId: complaint.complaintId,
     title: complaint.title,
     category: complaint.category,
@@ -317,7 +319,7 @@ export const getAdminDashboardStats = async (req, res) => {
 
 export const getAllAdminComplaints = async (req, res) => {
   try {
-    const complaints = await Complaint.find()
+    const complaints = await Complaint.find({isDeleted:{$ne:true}})
       .sort({ createdAt: -1 })
       // .limit(10)
       .populate("citizen", "name")
@@ -332,6 +334,229 @@ export const getAllAdminComplaints = async (req, res) => {
 
     return res.status(500).json({
       message: "Server error"
+    });
+  }
+};
+
+export const supportComplaint = async (req, res) => {
+  try {
+    const { complaintId } = req.params;
+
+    const complaint = await Complaint.findById(complaintId);
+
+    if (!complaint) {
+      return res.status(404).json({
+        message: "Complaint not found",
+      });
+    }
+
+    // Citizen cannot support their own complaint
+    if (complaint.citizen.toString() === req.user.id) {
+      return res.status(400).json({
+        message: "You cannot support your own complaint",
+      });
+    }
+
+    // Resolved complaints cannot be supported
+    if (complaint.status === "Resolved") {
+      return res.status(400).json({
+        message: "This complaint is already resolved",
+      });
+    }
+
+
+    if(!Array.isArray(complaint.supportedBy)){
+      complaint.supportedBy=[];
+    }
+    // Check whether citizen has already supported
+    if (complaint.supportedBy.some((id)=>id.toString() === req.user.id)) {
+      return res.status(400).json({
+        message: "You have already supported this complaint",
+      });
+    }
+
+    complaint.supportedBy.push(req.user.id);
+
+    await complaint.save();
+
+    return res.status(200).json({
+      message: "Complaint supported successfully",
+      supportCount: complaint.supportedBy.length,
+    });
+
+  } catch (error) {
+    console.error("SUPPORT COMPLAINT ERROR:", error);
+
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+export const removeSupport = async (req, res) => {
+  try {
+    const { complaintId } = req.params;
+
+    const complaint = await Complaint.findById(complaintId);
+
+    if (!complaint) {
+      return res.status(404).json({
+        message: "Complaint not found",
+      });
+    }
+
+    if (!Array.isArray(complaint.supportedBy)) {
+      complaint.supportedBy = [];
+    }
+
+    const alreadySupported = complaint.supportedBy.some(
+      (id) => id.toString() === req.user.id
+    );
+    console.log("Logged in user ID:", req.user.id);
+
+console.log(
+  "Supported By IDs:",
+  complaint.supportedBy.map((id) => id.toString())
+);
+
+    if (!alreadySupported) {
+      return res.status(400).json({
+        message: "You have not supported this complaint",
+      });
+    }
+
+    complaint.supportedBy = complaint.supportedBy.filter(
+      (id) => id.toString() !== req.user.id
+    );
+
+    await complaint.save();
+
+    return res.status(200).json({
+      message: "Support removed successfully",
+      supportCount: complaint.supportedBy.length,
+    });
+
+  } catch (error) {
+    console.error("REMOVE SUPPORT ERROR:", error);
+
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+export const getCommunityComplaints = async (req, res) => {
+  try {
+    const complaints = await Complaint.find({
+      status: { $ne: "Resolved" },isDeleted:{$ne:true}
+    })
+      .select("title description category location image status createdAt citizen supportedBy")
+      .sort({ createdAt: -1 });
+
+    const communityComplaints = complaints.map((complaint) => ({
+      _id: complaint._id,
+      title: complaint.title,
+      description: complaint.description,
+      category: complaint.category,
+      location: complaint.location,
+      image: complaint.image,
+      status: complaint.status,
+      createdAt: complaint.createdAt,
+      supportCount: complaint.supportedBy?.length || 0,
+      isSupported: complaint.supportedBy?.some(
+        (id) => id.toString() === req.user.id
+      ) || false
+    }));
+
+    return res.status(200).json({
+      message: "Community complaints fetched successfully",
+      complaints: communityComplaints
+    });
+
+  } catch (error) {
+    console.error("GET COMMUNITY COMPLAINTS ERROR:", error);
+
+    return res.status(500).json({
+      message: "Server error"
+    });
+  }
+};
+
+export const getCommunityStats = async (req, res) => {
+  try {
+    const activeFilter={isDeleted:{$ne:true}};
+    const totalComplaints = await Complaint.countDocuments(activeFilter);
+
+    const resolvedIssues = await Complaint.countDocuments({
+      ...activeFilter,
+      status: "Resolved",
+    });
+
+    const complaints = await Complaint.find(activeFilter).select("supportedBy");
+
+    const totalSupports = complaints.reduce(
+      (total, complaint) =>
+        total + (complaint.supportedBy?.length || 0),
+      0
+    );
+    const trendingCategories = await Complaint.aggregate([
+      {
+        $match:activeFilter
+      },
+  {
+    
+    $group: {
+      _id: "$category",
+      count: { $sum: 1 },
+    },
+  },
+  {
+    $sort: { count: -1 },
+  },
+  {
+    $limit: 5,
+  },
+]);
+
+    return res.status(200).json({
+      totalComplaints,
+      totalSupports,
+      resolvedIssues,
+      trendingCategories
+    });
+  } catch (error) {
+    console.error("COMMUNITY STATS ERROR:", error);
+
+    return res.status(500).json({
+      message: "Failed to fetch community stats",
+    });
+  }
+};
+
+export const deleteComplaint = async (req, res) => {
+  try {
+    const complaint = await Complaint.findById(req.params.id);
+         if (complaint.assignedOfficer.toString() !== req.user.id) {
+  return res.status(403).json({
+    message: "You can only delete complaints assigned to you",
+  });
+}
+    if (!complaint || complaint.isDeleted) {
+      return res.status(404).json({
+        message: "Complaint not found",
+      });
+    }
+
+    complaint.isDeleted = true;
+    await complaint.save();
+
+    return res.status(200).json({
+      message: "Complaint deleted successfully",
+    });
+  } catch (error) {
+    console.error("DELETE COMPLAINT ERROR:", error);
+    return res.status(500).json({
+      message: "Server error",
     });
   }
 };

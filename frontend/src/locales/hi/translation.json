@@ -173,7 +173,39 @@
   "Electricity": "बिजली",
   "Garbage": "कचरा",
   "Drainage": "जल निकासी",
-  "Other": "अन्य"
+  "Potholes": "सड़क के गड्ढे"
 }
+},
+
+  "communityFeed": "सामुदायिक फ़ीड",
+  "communityDescription": "अपने समुदाय की वास्तविक समस्याओं का समर्थन करें और उनके जल्दी समाधान में मदद करें।",
+  "searchComplaints": "शिकायतें खोजें...",
+  "latest": "नवीनतम",
+  "mostSupported": "सबसे अधिक समर्थित",
+  "open": "खुली हुई",
+  "inProgress": "प्रगति पर",
+  "assigned": "सौंपी गई",
+  "support": "समर्थन करें",
+  "supported": "समर्थित",
+  "supports": "समर्थन",
+  "noComplaintsFound": "कोई शिकायत नहीं मिली।",
+  "previous": "पिछला",
+  "next": "अगला",
+  "yourSupportMakesDifference": "आपका समर्थन बदलाव ला सकता है!",
+  "supportInfo": "वास्तविक समस्याओं का समर्थन करें, उनकी प्राथमिकता बढ़ाने में मदद करें और अपने शहर को बेहतर बनाएं।",
+  "communityStats": "सामुदायिक आँकड़े",
+  "totalComplaints": "कुल शिकायतें",
+  "totalSupports": "कुल समर्थन",
+  "resolvedIssues": "हल की गई समस्याएँ",
+  "trendingCategories": "प्रमुख श्रेणियाँ",
+  "allCategories": "सभी श्रेणियाँ",
+  "allAreas": "सभी क्षेत्र",
+  "status": {
+  "Open": "खुली हुई",
+  "In Progress": "प्रगति पर",
+  "Assigned": "आवंटित",
+  "Resolved": "हल की गई",
+  "Closed": "बंद"
 }
+
 }
