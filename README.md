@@ -70,6 +70,10 @@ Citizens can report civic problems with images and location details, track compl
 
 ### 6. Add Officer
 ![Add Officer](screenshots/add-officer.png)
+
+### 6. Community Feed
+![Community Feed](screenshots/community-feed.png)
+
 ## 📁 Project Structure
 
 CiviTrack/
