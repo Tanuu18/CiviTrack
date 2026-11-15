@@ -24,6 +24,9 @@ app.use("/api/auth",authRoutes);
 app.use("/api/complaints",complaintRoutes); 
 app.use("/api/ai",aiRoutes);
 const PORT = process.env.PORT || 5000;
+app.get("/",(req,res)=>{
+    res.status(200).send("civitrack backend running");
+})
 app.listen(PORT,()=>{
     console.log(`server running on ${PORT} port`);
 })
