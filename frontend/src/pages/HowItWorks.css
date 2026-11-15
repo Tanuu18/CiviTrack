@@ -193,7 +193,7 @@
     color:#4b5b6b;
     font-size: 35px;
 }
-.cta-contentp{
+.cta-content p{
     font-size: 15px;
     font-weight: 500;
     color: #4b5b6b;
@@ -210,4 +210,182 @@
     padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
+}
+
+@media (max-width: 992px) {
+
+  .how-it-works {
+    padding: 45px 25px;
+  }
+
+  .how-header h1 {
+    font-size: 42px;
+    margin: 0 0 15px 20px;
+  }
+
+  .how-header p {
+    margin: 0 20px;
+    font-size: 16px;
+  }
+
+  .city-image {
+    width: 250px;
+  }
+
+  .steps {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .step-card {
+    flex: 1 1 40%;
+  }
+
+  .process-cards {
+    flex-wrap: wrap;
+  }
+
+  .process-card {
+    flex: 1 1 28%;
+  }
+
+  .report-process {
+    padding: 30px;
+  }
+
+  .cta-image img {
+    width: 230px;
+  }
+
+  .cta-content h2 {
+    font-size: 27px;
+  }
+}
+@media (max-width: 600px) {
+
+  /* Main Section */
+
+  .how-it-works {
+    padding: 35px 15px;
+  }
+
+  /* Heading */
+
+  .how-header {
+    margin-bottom: 30px;
+  }
+
+  .how-header h1 {
+    font-size: 32px;
+    text-align: center;
+    margin: 0 0 12px;
+  }
+
+  .how-header p {
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .city-image {
+    display: none;
+  }
+
+  /* Steps Cards */
+
+  .steps {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .step-card {
+    width: 100%;
+    min-height: auto;
+    box-sizing: border-box;
+    padding: 35px 20px 25px;
+  }
+
+  .step-card h3 {
+    font-size: 20px;
+  }
+
+  .step-card p {
+    font-size: 14px;
+  }
+
+  .step-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+
+  /* Report Process */
+
+  .report-process {
+    margin-top: 35px;
+    padding: 25px 15px;
+  }
+
+  .head {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .process-cards {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .process-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+  }
+
+  .process-card h3 {
+    font-size: 17px;
+  }
+
+  .process-card p {
+    font-size: 14px;
+  }
+
+  .process-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  /* CTA Section */
+
+  .cta-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 15px;
+    margin: 30px 15px;
+    gap: 15px;
+  }
+
+  .cta-image img {
+    width: 220px;
+    max-width: 100%;
+  }
+
+  .cta-content {
+    width: 100%;
+  }
+
+  .cta-content h2 {
+    font-size: 24px;
+  }
+
+  .cta-content p {
+    font-size: 14px;
+  }
+
+  .cta-content button {
+    position: static;
+    transform: none;
+    margin-top: 15px;
+  }
 }

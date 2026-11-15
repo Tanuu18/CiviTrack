@@ -70,3 +70,67 @@
   padding: 30px;
   box-sizing: border-box;
 }
+
+/* Mobile Hamburger Button */
+
+.admin-menu-toggle,
+.admin-close-btn {
+  display: none;
+  border: none;
+  background: #0f9d58;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 26px;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 768px) {
+
+  .admin-menu-toggle {
+    display: flex;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 3000;
+  }
+
+  .admin-sidebar {
+    z-index: 2000;
+    width: 250px;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .admin-close-btn {
+    display: flex;
+    margin-left: auto;
+    margin-bottom: 10px;
+    font-size: 30px;
+  }
+
+  .admin-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1500;
+  }
+
+  .admin-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 75px 15px 20px;
+    box-sizing: border-box;
+  }
+
+}

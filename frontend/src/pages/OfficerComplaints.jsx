@@ -347,6 +347,7 @@ const OfficerComplaints = () => {
                   Update Status
                 </button>
               </div>
+              <div className="modal-actions">
               <button
                 className="close-btn"
                 onClick={() => setSelectedComplaint(null)}
@@ -359,7 +360,7 @@ const OfficerComplaints = () => {
               >
                 Delete Complaint
               </button>
-        
+        </div>
             </div>
           </div>
         )}

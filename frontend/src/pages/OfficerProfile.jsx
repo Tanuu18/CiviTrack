@@ -88,9 +88,7 @@ const handleSaveProfile = async () => {
       {/* Profile Header */}
       <div className="profile-header-card">
 
-        {/* <div className="profile-photo">
-          <div className="photo-placeholder">👤</div>
-        </div> */}
+       
 <div className="profile-avatar">
   {profile.profileImage ? (
     <img

@@ -441,3 +441,134 @@
 .confirm-delete-btn:hover {
   background: #b91c1c;
 }
+
+
+/* ==============================
+   OFFICERS PAGE RESPONSIVE
+================================ */
+
+/* Tablet */
+@media (max-width: 900px) {
+
+  .officers-page {
+    padding: 25px;
+  }
+
+  .officers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  .officers-page {
+    padding: 75px 15px 25px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .officers-page h1 {
+    font-size: 26px;
+  }
+
+  .officers-subtitle {
+    font-size: 13px;
+  }
+
+  /* Search and Filter */
+  .officers-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+    width: 100%;
+  }
+
+  .officers-toolbar input {
+    width: 100%;
+    min-width: 0;
+    flex:1;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 0 16px;
+  }
+
+  .officers-toolbar select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .officers-toolbar button {
+    width: 100%;
+  }
+
+  /* Officer Cards */
+  .officers-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+    width: 100%;
+  }
+
+  .officer-card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 16px;
+  }
+
+  .officer-card-header {
+    gap: 12px;
+  }
+
+  .officer-details div {
+    gap: 8px;
+  }
+
+  .officer-details strong {
+    overflow-wrap: anywhere;
+    max-width: 65%;
+  }
+
+  .officer-card-footer {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .officer-actions {
+    gap: 12px;
+  }
+
+}
+@media (max-width: 600px) {
+  .officers-page {
+    padding: 20px 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .officers-toolbar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .officers-toolbar input {
+    display: block;
+    width: 100% !important;
+    max-width: none;
+    min-width: 0;
+    flex: none;
+    box-sizing: border-box;
+  }
+
+  .officers-toolbar select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

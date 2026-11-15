@@ -400,3 +400,191 @@
 .complaint-modal-content button:hover {
   background: #26786e;
 }
+
+
+/* ============================= */
+/* Officer Dashboard Responsive */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  .officer-dashboard {
+    padding: 75px 15px 25px;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Dashboard Header */
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 23px;
+  }
+
+  .dashboard-header p {
+    font-size: 13px;
+  }
+
+  .dashboard-date {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  /* Statistics Cards */
+
+  .stats-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 14px 10px;
+    gap: 9px;
+    min-width: 0;
+  }
+
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 17px;
+  }
+
+  .stat-card h2 {
+    font-size: 21px;
+  }
+
+  .stat-card p {
+    font-size: 11px;
+  }
+
+  .stat-card span {
+    font-size: 15px;
+  }
+
+  /* Main Dashboard Content */
+
+  .dashboard-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+    min-width: 0;
+  }
+
+  .complaints-section {
+    padding: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+
+  .section-header h2 {
+    font-size: 17px;
+  }
+
+  .complaints-table {
+    min-width: 600px;
+    font-size: 12px;
+  }
+
+  /* Recent Activity */
+
+  .right-section {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .recent-activity {
+    padding: 15px;
+  }
+
+  /* Your Area */
+
+  .your-area {
+    padding: 15px;
+  }
+
+  .area-map {
+    height: 200px;
+  }
+
+  /* Bottom Cards */
+
+  .bottom-section {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 18px;
+  }
+
+  .impact-card,
+  .quote-card {
+    padding: 16px;
+  }
+
+  /* Complaint Modal */
+
+  .complaint-modal-content {
+    width: calc(100% - 40px);
+    max-width: 420px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+}
+
+/* Mobile Dashboard Layout Fix */
+
+@media (max-width: 768px) {
+
+  .officer-dashboard {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    padding: 75px 15px 25px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .dashboard-header,
+  .stats-container,
+  .dashboard-content,
+  .bottom-section {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .dashboard-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .complaints-section,
+  .right-section {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .complaints-section {
+    overflow-x: auto;
+  }
+
+  .complaints-table {
+    min-width: 650px;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bottom-section {
+    grid-template-columns: 1fr;
+  }
+
+}

@@ -235,3 +235,82 @@
   border-radius: 50%;
   display: block;
 }
+
+
+/* Mobile Responsive - Officer Profile */
+
+@media (max-width: 768px) {
+
+  /* Heading hamburger ke neeche */
+  .officer-profile {
+    padding: 85px 15px 25px;
+  }
+
+  .profile-heading h1 {
+    font-size: 27px;
+  }
+
+  .profile-heading p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Profile header alignment */
+  .profile-header-card {
+    padding: 20px 15px;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .profile-avatar {
+    width: 85px;
+    height: 85px;
+    min-width: 85px;
+  }
+
+  .profile-basic {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .profile-basic h2 {
+    font-size: 21px;
+    overflow-wrap: anywhere;
+  }
+
+  .profile-basic span {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .profile-basic p {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  /* Edit Profile button */
+  .edit-profile-btn {
+    padding: 10px 13px;
+    font-size: 13px;
+    flex-shrink: 0;
+    max-width: 105px;
+  }
+
+  /* Personal and Work Information */
+  .profile-card {
+    padding: 18px 15px;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 12px;
+  }
+
+  .profile-field div {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+}

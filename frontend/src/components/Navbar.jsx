@@ -1,11 +1,15 @@
 import React from 'react'
-import { Typography, Button, Box } from "@mui/material";
+import { useState } from 'react';
+import { Typography, Button, Box, IconButton } from "@mui/material";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import "./Navbar.css";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 const Navbar = () => {
   const { t, i18n } = useTranslation();
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <Box
@@ -60,7 +64,7 @@ const Navbar = () => {
               position: "absolute",
               left: "50%",
               transform: "translateX(-50%)",
-              display: "flex",
+              display: { xs: "none", md: "flex" },
               alignItems: "center",
               gap: "24px",
             }}
@@ -89,18 +93,6 @@ const Navbar = () => {
                 }
               }}>{t("howItWorks")}</Button>
             </Link>
-             <Link to="community-feed" style={{ textDecoration: "none" }}>
-              <Button sx={{
-                color: "#17202a", fontSize: "16px", fontWeight: 500,
-                textTransform: "none",
-                "&:hover": {
-                  color: "#0a6732",
-                  backgroundColor: "#87d5ac",
-                  fontWeight: 600,
-                  borderRadius: "8px"
-                }
-              }}>{t("communityFeed")}</Button>
-            </Link>
             {/* <Link to="issues" style={{ textDecoration: "none" }}>
               <Button sx={{
                 color: "#17202a", fontSize: "16px", fontWeight: 500,
@@ -113,6 +105,18 @@ const Navbar = () => {
                 }
               }}>{t("issues")}</Button>
             </Link> */}
+            <Link to="community-feed" style={{ textDecoration: "none" }}>
+              <Button sx={{
+                color: "#17202a", fontSize: "16px", fontWeight: 500,
+                textTransform: "none",
+                "&:hover": {
+                  color: "#0a6732",
+                  backgroundColor: "#87d5ac",
+                  fontWeight: 600,
+                  borderRadius: "8px"
+                }
+              }}>{t("communityFeed")}</Button>
+            </Link>
 
             <Link to="about" style={{ textDecoration: "none" }}>
               <Button sx={{
@@ -146,7 +150,8 @@ const Navbar = () => {
 
           </Box>
           <Box sx={{
-            position: "absolute", right: 0, display: "flex", alignItems: "center", gap: "12px"
+            position: "absolute", right: 0,
+            display: { xs: "none", md: "flex" }, alignItems: "center", gap: "12px"
           }}>
             <Link to="login" >
 
@@ -164,8 +169,76 @@ const Navbar = () => {
             </Link>
 
           </Box>
+          {/* Mobile Hamburger Button */}
 
+          <IconButton
+            onClick={() => setMenuOpen(!menuOpen)}
+            sx={{
+              display: { xs: "flex", md: "none" },
+              color: "#0f3d63",
+              marginLeft: "auto"
+            }}
+            aria-label="Toggle navigation menu"
+          >
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </IconButton>
         </Box>
+        {/* Mobile Navigation Menu */}
+
+        {menuOpen && (
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+              flexDirection: "column",
+              position: "absolute",
+              top: "72px",
+              right: 0,
+              width: "220px",
+              backgroundColor: "#ffffff",
+              padding: "15px 20px",
+              boxSizing: "border-box",
+              gap: "10px",
+              borderTop: "1px solid #e2e8f0",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              zIndex: 1000
+            }}
+          >
+
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              <Button fullWidth>{t("home")}</Button>
+            </Link>
+
+            <Link to="how-it-works" onClick={() => setMenuOpen(false)}>
+              <Button fullWidth>{t("howItWorks")}</Button>
+            </Link>
+
+            <Link to="community-feed" onClick={() => setMenuOpen(false)}>
+              <Button fullWidth>{t("communityFeed")}</Button>
+            </Link>
+
+            <Link to="about" onClick={() => setMenuOpen(false)}>
+              <Button fullWidth>{t("aboutUs")}</Button>
+            </Link>
+
+            <Button
+              fullWidth
+              onClick={() => {
+                const newLanguage = i18n.language === "en" ? "hi" : "en";
+                i18n.changeLanguage(newLanguage);
+                localStorage.setItem("language", newLanguage);
+              }}
+            >
+              {i18n.language === "en" ? "हिंदी" : "English"}
+            </Button>
+
+            <Link to="login" onClick={() => setMenuOpen(false)}>
+              <Button fullWidth variant="outlined">
+                {t("login")}
+              </Button>
+            </Link>
+
+          </Box>
+        )}
       </Box>
 
     </>

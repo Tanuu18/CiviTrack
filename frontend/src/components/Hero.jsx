@@ -23,20 +23,23 @@ const Hero = () => {
   )}
 </h1>
                  <p>{t("heroDescription")}</p>
-                 <Box className="hero-buttons">
-           <Link to="report-issue" style={{textDecoration:"none"}}>
-               <Button className='report'><FilePenLine size={18}/>{t("reportButton")}</Button>
+                       
+        </Box> 
+        <Box className="hero-image">
+          <img src={civicImage} alt="civic"/> 
+        </Box>
+        <Box className="hero-buttons">
+           <Link to="report-issue"
+            style={{textDecoration:"none"}}>
+               <Button className='report'>
+                <FilePenLine size={18}/>
+                {t("reportButton")}</Button>
            </Link>
            <Link to="track-complaint"  style={{textDecoration:"none"}}>
            <Button variant="outlined"
             className='complaint'><Search  size={18}/>{t("trackButton")}</Button>
               </Link> 
-            </Box>        
-        </Box> 
-        <Box className="hero-image">
-          <img src={civicImage} alt="civic"/> 
-        </Box>
-        
+            </Box>  
       </Box>
     </div>
   )

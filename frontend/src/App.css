@@ -39,6 +39,27 @@ html,body,#root{
   min-height: 100vh;
   box-sizing: border-box;
 }
+
+/* Officer Layout Mobile Fix */
+
+@media (max-width: 768px) {
+
+  .officer-layout {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .officer-content {
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+}
+
 /* html{
   scroll-behavior: smooth;
 }
