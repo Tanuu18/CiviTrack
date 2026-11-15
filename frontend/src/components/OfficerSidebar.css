@@ -57,7 +57,7 @@
    /* Mobile Hamburger Button */
 
 .officer-menu-toggle {
-  display: flex;
+  display: none;
   border: none;
   background: #0f9d58;
   color: white;
