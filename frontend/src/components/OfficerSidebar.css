@@ -57,7 +57,7 @@
    /* Mobile Hamburger Button */
 
 .officer-menu-toggle {
-  display: none;
+  display: none !important;
   border: none;
   background: #0f9d58;
   color: white;
@@ -111,10 +111,5 @@
 
   .officer-logout {
     margin-top: auto;
-  }
-}
-@media (min-width: 769px) {
-  .officer-menu-toggle {
-    display: none !important;
   }
 }
