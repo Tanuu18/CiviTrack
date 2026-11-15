@@ -113,3 +113,8 @@
     margin-top: auto;
   }
 }
+@media (min-width: 769px) {
+  .officer-menu-toggle {
+    display: none !important;
+  }
+}
