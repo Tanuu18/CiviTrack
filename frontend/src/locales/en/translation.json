@@ -175,6 +175,7 @@
 }
 
 },
+  
  
   "communityFeed": "Community Feed",
   "communityDescription": "Support real civic issues from your community and help in faster resolution.",
@@ -205,5 +206,73 @@
   "Assigned": "Assigned",
   "Resolved": "Resolved",
   "Closed": "Closed"
-}
+},
+  "myComplaints2": {
+    "title": "My Complaints",
+    "subtitle": "Manage and track your reported issues",
+    "reportNewIssue": "+ Report New Issue",
+    "retry": "Retry",
+    "loading": "Loading your complaints...",
+    "dateUnavailable": "Date unavailable",
+    "complaintId": "ID",
+    "complaintsCount": "{{count}} complaints",
+    "yourReports": "Your Reports",
+    "stats": {
+      "total": "Total Reports",
+      "pending": "Pending",
+      "inProgress": "In Progress",
+      "resolved": "Resolved"
+    },
+    "status": {
+      "pending": "Pending",
+      "assigned": "Assigned",
+      "inProgress": "In Progress",
+      "resolved": "Resolved"
+    },
+    "empty": {
+      "title": "No complaints yet",
+      "description": "You haven't reported any civic issues.",
+      "button": "Report Your First Issue"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "editUnavailable": "Editing unavailable"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "deleteModal": {
+      "title": "Delete Complaint?",
+      "confirmStart": "Are you sure you want to delete",
+      "warning": " This action cannot be undone.",
+      "deleting": "Deleting...",
+      "confirm": "Yes, Delete"
+    },
+    "editModal": {
+      "title": "Edit Complaint",
+      "subtitle": "Update your complaint details",
+      "saving": "Saving...",
+      "save": "Save Changes"
+    },
+    "form": {
+      "title": "Complaint Title",
+      "description": "Description",
+      "category": "Category",
+      "location": "Location",
+      "changeImage": "Change Complaint Image (Optional)"
+    },
+    "toast": {
+      "updated": "Complaint updated successfully!",
+      "deleted": "Complaint deleted successfully!"
+    },
+    "errors": {
+      "fetch": "Unable to fetch your complaints.",
+      "update": "Unable to update complaint.",
+      "delete": "Unable to delete complaint."
+    }
+  }
+
 }

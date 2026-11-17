@@ -162,3 +162,49 @@
 .image-preview-container button:hover {
   background-color: #fecaca;
 }
+.location-autocomplete {
+  position: relative;
+  width: 100%;
+}
+
+.location-autocomplete input {
+  width: 100%;
+}
+
+.location-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 5px;
+  z-index: 1000;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.location-suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+}
+
+.location-suggestion-item:hover {
+  background: #f0f7f2;
+}
+
+.location-search-loading {
+  font-size: 13px;
+  color: #666;
+  margin: 5px 0;
+}

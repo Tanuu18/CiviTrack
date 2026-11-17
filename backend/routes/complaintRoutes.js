@@ -5,6 +5,9 @@ import { createComplaint, getAdminDashboardStats, getAllAdminComplaints,
    removeSupport,
    getCommunityComplaints,
    getCommunityStats,
+   getMyComplaints,
+updateMyComplaint,
+deleteMyComplaint,
    deleteComplaint} from "../controller/complaintController.js";
 import upload from "../middleware/uploadMiddleware.js";
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -35,6 +38,7 @@ router.get(
   roleMiddleware("citizen"),
   getCommunityComplaints
 );
+router.get("/my", authMiddleware, roleMiddleware("citizen"), getMyComplaints);
 router.get("/:complaintId",authMiddleware,getComplaintById);
 router.post("/:complaintId/assign",authMiddleware,roleMiddleware);
 router.get("/admin/dashboard-stats",authMiddleware,roleMiddleware("admin"),getAdminDashboardStats);
@@ -46,5 +50,20 @@ router.delete(
   authMiddleware,
   roleMiddleware("officer"),
   deleteComplaint
+);
+
+router.put(
+  "/my/:id",
+  authMiddleware,
+  roleMiddleware("citizen"),
+  upload.single("image"),
+  updateMyComplaint
+);
+
+router.delete(
+  "/my/:id",
+  authMiddleware,
+  roleMiddleware("citizen"),
+  deleteMyComplaint
 );
 export default router;

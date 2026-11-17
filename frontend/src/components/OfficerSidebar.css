@@ -11,14 +11,19 @@
       flex-direction: column; 
       padding: 24px 16px;
        box-sizing: border-box;
+       align-items: stretch;
      /* position: relative; */
-     overflow: hidden;
+     overflow-x: hidden;
+     overflow-y: auto;
+     scrollbar-width: thin;
+     scrollbar-color:#15966f transparent;
      } 
  .officer-sidebar h2 { margin: 0 0 30px; color: #0f9d58; font-size: 24px; } 
 .officer-sidebar nav,.officer-sidebar .officer-logout {
       display: flex; flex-direction: column; gap: 8px; 
      position: relative;
      z-index: 2;
+     flex-shrink: 0;
      } 
 .officer-sidebar nav a { display: flex; align-items: center; gap: 12px;
      padding: 20px 14px; text-decoration: none; color: white; border-radius: 10px; 
@@ -38,7 +43,8 @@
      } 
      
    .officer-logout {
-     margin-top: 350px;
+     /* margin-top: 350px; */
+     margin-top: auto;
       width: 100%;
        display: flex;
         align-items: center;
@@ -48,10 +54,14 @@
        padding-top: 18px;
         border: none;
         border-top: 1px solid #d5d5d5;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
       border-radius: 8px;
         background: rgb(211, 224, 211); 
         color: #555; cursor: pointer;
-         font-size: 14px; }
+         font-size: 14px; 
+        }
     .officer-logout:hover { background: #feecec; color: #d32f2f; }
 
    /* Mobile Hamburger Button */

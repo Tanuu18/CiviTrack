@@ -59,11 +59,11 @@
     width:100%;
     margin-bottom: 20px;
 }
-.input-icon{
+.login-container .input-icon{
   position: absolute;
   left: 14px;
   top: 50%;
-  /* transform: translateY(-50%);   */
+   transform: translateY(-50%);   
   color: #777;            
   pointer-events: none; 
 }
@@ -99,4 +99,32 @@
   color: #0f9d58;
   font-weight: 600;
   cursor: pointer;
+}
+.login-container .input-wrapper {
+  position: relative;
+}
+
+.login-container .password-toggle {
+  all: unset;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #777;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.login-container .password-toggle:hover,
+.login-container .password-toggle:focus,
+.login-container .password-toggle:active {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.login-container .input-wrapper input {
+  padding-right: 45px;
 }

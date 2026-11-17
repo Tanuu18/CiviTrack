@@ -72,14 +72,18 @@ const CommunityFeed = () => {
                 complaint.location?.toLowerCase().includes(searchText)
             );
         })
-        //   .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
         .sort((a, b) => {
-            if (sort === "Oldest") {
-                return new Date(a.createdAt) - new Date(b.createdAt);
-            }
 
-            return new Date(b.createdAt) - new Date(a.createdAt);
-        });
+    // Most Supported: highest support count first
+    if (sort === "Most Supported") {
+        return (b.supportCount || 0) - (a.supportCount || 0);
+    } 
+
+    // Latest: newest complaints first
+    return new Date(b.createdAt) - new Date(a.createdAt);
+
+});
     useEffect(() => {
         setCurrentPage(1);
     }, [search, category, area, sort]);

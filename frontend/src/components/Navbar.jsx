@@ -7,9 +7,55 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import {
+  Avatar,
+  Menu,
+  MenuItem,
+  Divider
+} from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [user, setUser] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch {
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, [location]);
+
+  const handleProfileClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleProfileClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    setUser(null);
+    handleProfileClose();
+    navigate("/login");
+  };
   return (
     <>
       <Box
@@ -118,6 +164,22 @@ const Navbar = () => {
               }}>{t("communityFeed")}</Button>
             </Link>
 
+            {user && user.role === "citizen" && (
+              <Link to="my-complaints" style={{ textDecoration: "none" }}>
+                <Button sx={{
+                color: "#17202a", fontSize: "16px", fontWeight: 500,
+                textTransform: "none",
+                "&:hover": {
+                  color: "#0a6732",
+                  backgroundColor: "#87d5ac",
+                  fontWeight: 600,
+                  borderRadius: "8px"
+                }
+              }}> {t("myComplaints")}</Button>
+               
+              </Link>
+            )}
+
             <Link to="about" style={{ textDecoration: "none" }}>
               <Button sx={{
                 color: "#17202a", fontSize: "16px", fontWeight: 500, textTransform: "none",
@@ -150,10 +212,10 @@ const Navbar = () => {
 
           </Box>
           <Box sx={{
-            position: "absolute", right: 0,
+            position: "absolute", right: "30px",
             display: { xs: "none", md: "flex" }, alignItems: "center", gap: "12px"
           }}>
-            <Link to="login" >
+            {/* <Link to="login" >
 
               <Button variant='outlined' sx={{
                 color: "#0f7a3d",
@@ -166,9 +228,63 @@ const Navbar = () => {
                   borderColor: "#0f7a3d"
                 }
               }}>{t("login")}</Button>
-            </Link>
+            </Link> */}
+            {!user ? (
+              <Link to="login">
+                <Button variant="outlined" fullWidth
+                //   sx={{
+                //     color: "#0f7a3d",
+                //     borderColor: "#0f7a3d",
+                //     fontWeight: 600,
+                //     textTransform: "none",
+                //     marginRight: "50px"
+                //   }
+                // }
+                >
+                  {t("login")}
+                </Button>
+              </Link>
+            ) : (
 
+              <Avatar onClick={handleProfileClick}
+                sx={{ width: 36, height: 36, bgcolor: "#15966f", cursor: "pointer" }}>
+                {user.name?.charAt(0)?.toUpperCase() ||
+                  user.fullName?.charAt(0)?.toUpperCase() ||
+                  <PersonIcon />}
+              </Avatar>
+
+            )}
           </Box>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleProfileClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right"
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right"
+            }}
+          >
+            <Box sx={{ px: 2, py: 1 }}>
+              <Typography fontWeight={600}>
+                {user?.name || user?.fullName || "Citizen"}
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                {user?.email}
+              </Typography>
+            </Box>
+
+            <Divider />
+
+            <MenuItem onClick={handleLogout}>
+              <LogoutIcon sx={{ mr: 1 }} />
+              Logout
+            </MenuItem>
+          </Menu>
           {/* Mobile Hamburger Button */}
 
           <IconButton
@@ -231,12 +347,33 @@ const Navbar = () => {
               {i18n.language === "en" ? "हिंदी" : "English"}
             </Button>
 
-            <Link to="login" onClick={() => setMenuOpen(false)}>
+            {/* <Link to="login" onClick={() => setMenuOpen(false)}>
               <Button fullWidth variant="outlined">
                 {t("login")}
               </Button>
-            </Link>
-
+            </Link> */}
+            {!user ? (
+              <Link
+                to="/login"
+                onClick={() => setMenuOpen(false)}
+                style={{ textDecoration: "none" }}
+              >
+                <Button fullWidth variant="outlined">
+                  {t("login")}
+                </Button>
+              </Link>
+            ) : (
+              <Button
+                fullWidth
+                variant="outlined"
+                onClick={(event) => {
+                  setMenuOpen(false);
+                  handleProfileClick(event);
+                }}
+              >
+                My Profile
+              </Button>
+            )}
           </Box>
         )}
       </Box>

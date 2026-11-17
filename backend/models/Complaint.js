@@ -82,9 +82,21 @@ aiAnalysis: {
   type: Boolean,
   default: false,
 },
+idempotencyKey:{
+  type:String,
+}
   },
   {
     timestamps: true
+  }
+);
+complaintSchema.index(
+  { citizen: 1, idempotencyKey: 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      idempotencyKey: { $type: "string" },
+    },
   }
 );
 

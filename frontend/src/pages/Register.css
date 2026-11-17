@@ -24,13 +24,7 @@
   overflow: hidden;
   padding: 0;
    box-sizing: border-box; 
-  /* background: #0f9d58; */
-  /* color:white;
-  padding: 60px 45px;
-  display: flex;
-   flex-direction: column;
-   justify-content: center;
-   box-sizing: border-box; */
+  
 }
 .register-image{
     width:100%;
@@ -72,11 +66,6 @@
   color: #0b8043;
 }
 
-/* .register-tagline {
-  margin: 2px 0 0;
-  font-size: 17px;
-  font-weight: 500;
-} */
  .register-right .input-wrapper {
   position: relative;
   width: 100%;
@@ -92,10 +81,57 @@
   pointer-events: none;
 }
 
+ .register-right .input-wrapper button {
+  position: absolute;
+  right: 14px;
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: auto;
+  height: auto;
+  min-width: 0;
+  margin: 0;
+
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: #777;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.register-right .input-wrapper .password-toggle {
+  all: unset;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.register-right .input-wrapper .password-toggle:hover,
+.register-right .input-wrapper .password-toggle:focus,
+.register-right .input-wrapper .password-toggle:active {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
 .register-right .input-wrapper input {
   width: 100%;
-  padding: 12px 14px 12px 42px;
+  padding: 12px 45px 12px 42px;
   box-sizing: border-box;
+  
 }
 .overlay-line {
   width: 75px;
@@ -221,33 +257,6 @@
   font-weight: 600;
   cursor: pointer;
 }
-
-/* Mobile */
-/* @media (max-width: 768px) {
-  .register-container {
-    flex-direction: column;
-  }
-.register-left,
-  .register-right {
-    width: 100%;
-  }
-
-  .register-left {
-    padding: 35px;
-  }
-
-  .register-left h1 {
-    font-size: 32px;
-  }
-
-  .register-left h2 {
-    font-size: 23px;
-  }
-
-  .register-right {
-    padding: 35px 25px;
-  }
-} */
  /* Mobile Responsive */
 @media (max-width: 768px) {
 

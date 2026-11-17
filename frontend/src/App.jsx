@@ -22,6 +22,7 @@ import AddOfficer from "./Admin/AddOfficer";
 import Officer from "./Admin/Officer";
 import AdminDashboard from "./Admin/AdminDashboard";
 import CommunityFeed from "./pages/CommunityFeed";
+import MyComplaints from "./pages/MyComplaints";
 function OfficerLayout() {  
   return (
     <div className="officer-layout">
@@ -53,6 +54,7 @@ function AppContent() {
           <Route path="/how-it-works" element={<HowItWorks />} />
           {/* <Route path="/issues" element={<Issues />} /> */}
           <Route path="community-feed" element={<CommunityFeed/>}/>
+          <Route path="/my-complaints" element={<MyComplaints/>} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>

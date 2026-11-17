@@ -22,7 +22,29 @@ export const createComplaint = async (req, res) => {
   summary: "",
 };
 
+const idempotencyKey = req.get("Idempotency-Key");
+
+if (!idempotencyKey) {
+  return res.status(400).json({
+    message: "Idempotency key is required",
+  });
+}
+
+// Check whether this request was already processed
+const existingComplaint = await Complaint.findOne({
+  citizen: req.user.id,
+  idempotencyKey,
+});
+
+if (existingComplaint) {
+  return res.status(200).json({
+    message: "Complaint already submitted",
+    complaint: existingComplaint,
+  });
+}
+
 try {
+  
   const aiResponse = await ai.models.generateContent({
     model: "gemini-3.1-flash-lite",
     contents: `
@@ -110,6 +132,7 @@ if (req.file) {
     const complaint = await Complaint.create({
       complaintId,
       citizen: req.user.id,
+      idempotencyKey,
       title,
       description,
       category,            
@@ -557,6 +580,152 @@ export const deleteComplaint = async (req, res) => {
     console.error("DELETE COMPLAINT ERROR:", error);
     return res.status(500).json({
       message: "Server error",
+    });
+  }
+};
+
+
+// 1. Get all complaints of logged-in citizen
+export const getMyComplaints = async (req, res) => {
+  try {
+    const complaints = await Complaint.find({
+      citizen: req.user.id,
+      isDeleted: { $ne: true }
+    })
+      .sort({ createdAt: -1 })
+      .populate("assignedOfficer", "name");
+
+    return res.status(200).json({
+      message: "My complaints fetched successfully",
+      complaints
+    });
+
+  } catch (error) {
+    console.error("GET MY COMPLAINTS ERROR:", error);
+    return res.status(500).json({
+      message: "Server error"
+    });
+  }
+};
+
+
+// 2. Update citizen's pending complaint
+export const updateMyComplaint = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        message: "Invalid complaint ID"
+      });
+    }
+
+    const complaint = await Complaint.findOne({
+      _id: id,
+      citizen: req.user.id,
+      isDeleted: { $ne: true }
+    });
+
+    if (!complaint) {
+      return res.status(404).json({
+        message: "Complaint not found"
+      });
+    }
+
+    if (complaint.status !== "Pending") {
+      return res.status(400).json({
+        message: "Only pending complaints can be edited"
+      });
+    }
+
+    const { title, description, category, location, latitude, longitude } = req.body;
+
+    if (title !== undefined) complaint.title = title;
+    if (description !== undefined) complaint.description = description;
+    if (category !== undefined) {
+      complaint.category = category;
+      complaint.aiAnalysis.category = category;
+    }
+    if (location !== undefined) complaint.location = location;
+    if (latitude !== undefined) complaint.latitude = latitude;
+    if (longitude !== undefined) complaint.longitude = longitude;
+
+    // Optional new image upload
+    if (req.file) {
+      const uploadedImage = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "CiviTrack/complaints",
+            upload_preset: "ml_default"
+          },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          }
+        );
+
+        stream.end(req.file.buffer);
+      });
+
+      complaint.image = uploadedImage.secure_url;
+    }
+
+    await complaint.save();
+
+    return res.status(200).json({
+      message: "Complaint updated successfully",
+      complaint
+    });
+
+  } catch (error) {
+    console.error("UPDATE MY COMPLAINT ERROR:", error);
+    return res.status(500).json({
+      message: "Server error"
+    });
+  }
+};
+
+
+// 3. Soft delete citizen's pending complaint
+export const deleteMyComplaint = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        message: "Invalid complaint ID"
+      });
+    }
+
+    const complaint = await Complaint.findOne({
+      _id: id,
+      citizen: req.user.id,
+      isDeleted: { $ne: true }
+    });
+
+    if (!complaint) {
+      return res.status(404).json({
+        message: "Complaint not found"
+      });
+    }
+
+    if (complaint.status !== "Pending") {
+      return res.status(400).json({
+        message: "Only pending complaints can be deleted"
+      });
+    }
+
+    complaint.isDeleted = true;
+    await complaint.save();
+
+    return res.status(200).json({
+      message: "Complaint deleted successfully"
+    });
+
+  } catch (error) {
+    console.error("DELETE MY COMPLAINT ERROR:", error);
+    return res.status(500).json({
+      message: "Server error"
     });
   }
 };
