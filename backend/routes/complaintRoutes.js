@@ -28,14 +28,14 @@ router.get("/officer/activities",authMiddleware,roleMiddleware("officer"),getOff
 router.get(
   "/community/stats",
   authMiddleware,
-  roleMiddleware("citizen"),
+  // roleMiddleware("citizen"),
   getCommunityStats
 );
 router.put("/:complaintId/status",authMiddleware,roleMiddleware("officer"),updateComplaintStatus);
 router.get(
   "/community",
   authMiddleware,
-  roleMiddleware("citizen"),
+  // roleMiddleware("citizen"),
   getCommunityComplaints
 );
 router.get("/my", authMiddleware, roleMiddleware("citizen"), getMyComplaints);
