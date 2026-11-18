@@ -45,6 +45,7 @@
    .officer-logout {
      /* margin-top: 350px; */
      margin-top: auto;
+     margin-bottom: 60px;
       width: 100%;
        display: flex;
         align-items: center;
@@ -64,7 +65,7 @@
         }
     .officer-logout:hover { background: #feecec; color: #d32f2f; }
 
-   /* Mobile Hamburger Button */
+   /* Mobile Hamburger Button */ 
 
 .officer-menu-toggle {
   display: none ;
