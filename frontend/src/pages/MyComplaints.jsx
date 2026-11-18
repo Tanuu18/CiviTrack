@@ -390,7 +390,7 @@ const MyComplaints = () => {
 
                                     <div className="complaint-card-actions">
 
-                                        {complaint.status === "Pending" ? (
+                                        {["Pending","Assigned"].includes(complaint.status)?(
                                             <>
                                                 <button
                                                     className="edit-complaint-btn"

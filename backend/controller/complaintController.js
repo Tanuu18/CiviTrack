@@ -632,9 +632,9 @@ export const updateMyComplaint = async (req, res) => {
       });
     }
 
-    if (complaint.status !== "Pending") {
+    if (!["Pending","Assigned"].includes(complaint.status)) {
       return res.status(400).json({
-        message: "Only pending complaints can be edited"
+        message: "Only pending or assigned complaints can be edited"
       });
     }
 
@@ -708,10 +708,13 @@ export const deleteMyComplaint = async (req, res) => {
         message: "Complaint not found"
       });
     }
+    console.log("delete controller hit updated version");
+    console.log(complaint.status);
+    
 
-    if (complaint.status !== "Pending") {
+    if (!["Pending","Assigned"].includes(complaint.status)) {
       return res.status(400).json({
-        message: "Only pending complaints can be deleted"
+        message: "Only pending and assigned complaints can be deleted"
       });
     }
 
