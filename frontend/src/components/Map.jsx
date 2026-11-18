@@ -16,7 +16,7 @@ const mapCenter = firstComplaint
   return (
     <div className='map-wrapper'> 
       <MapContainer center={mapCenter} zoom={13} key={`${mapCenter[0]}-${mapCenter[1]}`}
-      className="issues-map"> 
+      className="issues-map" style={{height:"100%",width:"100%"}}> 
         <TileLayer attribution='&copy; 
          OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/> 
        

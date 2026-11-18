@@ -13,6 +13,14 @@ const OfficerDashboard = () => {
         const response=await api.get("/complaints/officer");
         console.log(response.data);
         setComplaints(response.data.complaints);
+        console.table(
+  response.data.complaints.map((c) => ({
+    latitude: c.latitude,
+    longitude: c.longitude,
+    latitudeType: typeof c.latitude,
+    longitudeType: typeof c.longitude
+  }))
+);
         console.log(response.data.complaints);
         
       } catch (error) {

@@ -291,9 +291,18 @@
     border-radius: 10px;
     overflow: hidden;
 }
-.area-map .leaflet-container{
+.area-map .leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+.area-map .map-wrapper{
     height:100%;
     width:100%;
+}
+.area-map .issues-map{
+  height: 180px;
+  width:100%;
+  min-height: 250px;
 }
 .bottom-section {
   display: grid;
