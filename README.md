@@ -137,6 +137,9 @@ Open the local URL displayed by Vite in your terminal.
 - Keep your database credentials and secret keys private.
 - Use your own Cloudinary and Gemini credentials.
 
+## Live Demo
+[View Live Project](https://civi-track-alpha.vercel.app)
+
 ## 🛣️ Future Enhancements
 
 - Smart Issue Clustering to identify multiple complaints about the same civic issue.
