@@ -167,16 +167,16 @@ const Navbar = () => {
             {user && user.role === "citizen" && (
               <Link to="my-complaints" style={{ textDecoration: "none" }}>
                 <Button sx={{
-                color: "#17202a", fontSize: "16px", fontWeight: 500,
-                textTransform: "none",
-                "&:hover": {
-                  color: "#0a6732",
-                  backgroundColor: "#87d5ac",
-                  fontWeight: 600,
-                  borderRadius: "8px"
-                }
-              }}> {t("myComplaints")}</Button>
-               
+                  color: "#17202a", fontSize: "16px", fontWeight: 500,
+                  textTransform: "none",
+                  "&:hover": {
+                    color: "#0a6732",
+                    backgroundColor: "#87d5ac",
+                    fontWeight: 600,
+                    borderRadius: "8px"
+                  }
+                }}> {t("myComplaints")}</Button>
+
               </Link>
             )}
 
@@ -331,7 +331,16 @@ const Navbar = () => {
             <Link to="community-feed" onClick={() => setMenuOpen(false)}>
               <Button fullWidth>{t("communityFeed")}</Button>
             </Link>
-
+            {user && user.role === "citizen" && (
+              <Link
+                to="/my-complaints"
+                onClick={() => setMenuOpen(false)}
+              >
+                <Button fullWidth>
+                  {t("myComplaints")}
+                </Button>
+              </Link>
+            )}
             <Link to="about" onClick={() => setMenuOpen(false)}>
               <Button fullWidth>{t("aboutUs")}</Button>
             </Link>
